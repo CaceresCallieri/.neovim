@@ -3,6 +3,10 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+-- Commands ---------------------
+
+-- Rewrite :W as :w
+vim.cmd("command! W w")
 ---------------------
 -- General Keymaps -------------------
 
