@@ -44,3 +44,15 @@ opt.swapfile = false
 
 -- Center cursor by x lines
 opt.scrolloff = 15
+
+-- Neovide options
+if vim.g.neovide then
+	vim.g.neovide_cursor_animation_length = 0.1
+	vim.g.neovide_cursor_trail_size = 0
+	vim.g.neovide_cursor_animate_command_line = false
+	vim.g.neovide_cursor_smooth_blink = true -- TODO: Add relevant options to make this work
+
+	-- Neovide only keymaps
+	vim.keymap.set("n", "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
+	-- vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+end
