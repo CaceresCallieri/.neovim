@@ -48,3 +48,9 @@ keymap.set("n", "<C-p>", "<cmd>tabp<CR>", { desc = "Navigate to previous tab - S
 keymap.set("n", "<leader>b", "", { desc = "Buffer navigation" })
 keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Navigate to next buffer" })
 keymap.set("n", "<leader>bp", ":bprev<CR>", { desc = "Navigate to previous buffer" })
+
+-- Neovide keymaps
+if vim.g.neovide then
+	-- vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+	vim.keymap.set("n", "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
+end
