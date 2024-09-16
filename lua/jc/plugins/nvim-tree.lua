@@ -22,8 +22,8 @@ return {
 				icons = {
 					glyphs = {
 						folder = {
-							arrow_closed = "", -- arrow when folder is closed
-							arrow_open = "", -- arrow when folder is open
+							arrow_closed = "►", -- arrow when folder is closed
+							arrow_open = "▼", -- arrow when folder is open
 						},
 					},
 				},
@@ -49,14 +49,14 @@ return {
 		-- set keymaps
 		local keymap = vim.keymap -- for conciseness
 
-		keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
 		keymap.set(
 			"n",
-			"<leader>Ef",
+			"<leader>e",
 			"<cmd>NvimTreeFindFileToggle<CR>",
-			{ desc = "Toggle file explorer on current file" }
-		) -- toggle file explorer on current file
-		keymap.set("n", "<leader>Ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-		keymap.set("n", "<leader>Er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+			{ desc = "Toggle file explorer on current file" } -- This is the "default" option
+		)
+		keymap.set("n", "<leader>Ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+		keymap.set("n", "<leader>Ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
+		keymap.set("n", "<leader>Er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 	end,
 }
