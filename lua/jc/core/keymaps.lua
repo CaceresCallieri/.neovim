@@ -25,7 +25,7 @@ keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- make ñ useful
 keymap.set("i", "C-d", "<backspace>", { desc = "Simple backspace" }) -- simple delete with ñ
--- keymap.set("i", "<C-ñ>", "<CR>", { desc = "Simple enter" }) -- FIX:
+-- keymap.set("i", "<C-ñ>", "<CR>", { desc = "Simple enter" }) -- TODO:
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -48,3 +48,6 @@ keymap.set("n", "<C-p>", "<cmd>tabp<CR>", { desc = "Navigate to previous tab - S
 keymap.set("n", "<leader>b", "", { desc = "Buffer navigation" })
 keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Navigate to next buffer" })
 keymap.set("n", "<leader>bp", ":bprev<CR>", { desc = "Navigate to previous buffer" })
+
+-- Plugin general keymap, plugins keymaps are in their .lua file
+keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
