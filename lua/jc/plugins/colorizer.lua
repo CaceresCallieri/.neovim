@@ -5,7 +5,9 @@ return {
 
 		colorizer.setup({
 			"*", -- Highlight all files, but customize some others.
-			css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+			css = {
+				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+			},
 		})
 
 		local keymap = vim.keymap
