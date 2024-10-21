@@ -17,10 +17,17 @@ return {
 				file_ignore_patterns = { "node_modules" },
 				mappings = {
 					i = {
-						["<C-k>"] = actions.move_selection_previous, -- move to prev result
-						["<C-j>"] = actions.move_selection_next, -- move to next result
+						["<C-k>"] = actions.move_selection_previous,
+						["<C-j>"] = actions.move_selection_next,
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
+				},
+			},
+
+			pickers = {
+				find_files = {
+					hidden = true,
+					follow = true, -- Allow symlinks to appear on search results
 				},
 			},
 		})
