@@ -29,6 +29,12 @@ return {
 					hidden = true,
 					follow = true, -- Allow symlinks to appear on search results
 				},
+				live_grep = {
+					file_ignore_patterns = { "node_modules", ".git" },
+					additional_args = function(_)
+						return { "--hidden", "--follow" } -- Allow find string to search symlinks and hidden files
+					end,
+				},
 			},
 		})
 
