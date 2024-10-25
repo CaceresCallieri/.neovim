@@ -8,11 +8,21 @@ return {
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 
+		local viewport_width = vim.api.nvim_list_uis()[1].width
+		local viewport_height = vim.api.nvim_list_uis()[1].height
+
 		nvimtree.setup({
 			view = {
-				width = 60,
 				relativenumber = true,
-				side = "right",
+
+				float = {
+					enable = true,
+					open_win_config = {
+						width = 40,
+						height = viewport_height,
+						col = viewport_width, -- Place floating window to the left of the screen
+					},
+				},
 			},
 			-- change folder arrow icons
 			renderer = {
