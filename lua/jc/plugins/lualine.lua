@@ -7,19 +7,20 @@ return {
 		local noice_mode_get = require("noice").api.statusline.mode.get
 		local noice_mode_has = require("noice").api.statusline.mode.has
 
+		-- Theme: Kanagawa Wave
 		local colors = {
 			blue = "#80a0ff",
-			cyan = "#79dac8",
-			black = "#080808",
-			white = "#c6c6c6",
-			red = "#ff5189",
-			violet = "#d183e8",
+			cyan = "#7FB4CA",
+			black = "#232323",
+			white = "#D4CFB4",
+			red = "#FF5D62",
+			violet = "#786794",
 			grey = "#303030",
 		}
 
 		local bubbles_theme = {
 			normal = {
-				a = { fg = colors.black, bg = colors.violet },
+				a = { fg = colors.white, bg = colors.violet },
 				b = { fg = colors.white, bg = colors.grey },
 				c = { fg = colors.white },
 			},
@@ -50,7 +51,7 @@ return {
 					{
 						noice_mode_get,
 						cond = noice_mode_has,
-						color = { fg = "#ff9e64" },
+						color = { fg = colors.white },
 					},
 				},
 				lualine_x = {
