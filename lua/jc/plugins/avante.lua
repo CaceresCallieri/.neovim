@@ -50,6 +50,11 @@ return {
 		avante.setup({
 			provider = "copilot",
 			auto_suggestions_provider = "copilot",
+
+			windows = {
+				width = 35, -- percent
+				wrap = true,
+			},
 		})
 	end,
 }
