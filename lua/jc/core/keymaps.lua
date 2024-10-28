@@ -56,6 +56,11 @@ keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
 ----------------------------------------------------
 -- Macros ------------------------------------------
 
+-- Obsidian macros
+keymap.set("n", "<leader>o", "", { desc = "Obsidian macros" })
+
+keymap.set("n", "<leader>oc", "0ci[x<esc>ddmaG{p'a", { desc = "Check todo box and move the line to the checked list" })
+
 -- Replace visually selected text macro
 keymap.set(
 	"v",
