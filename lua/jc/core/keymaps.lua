@@ -23,10 +23,6 @@ keymap.set("n", "x", '"_x')
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
--- make ñ useful
--- keymap.set("i", "C-d", "<backspace>", { desc = "Simple backspace" }) -- simple delete with ñ
--- keymap.set("i", "<C-ñ>", "<CR>", { desc = "Simple enter" }) -- TODO:
-
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
