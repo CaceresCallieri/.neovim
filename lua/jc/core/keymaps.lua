@@ -3,12 +3,12 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
--- Commands ---------------------
-
+-- Commands --------------------------------------------
 -- Rewrite :W as :w
 vim.cmd("command! W w")
----------------------
--- General Keymaps -------------------
+
+--------------------------------------------------------
+-- General Keymaps -------------------------------------
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
@@ -52,3 +52,28 @@ keymap.set("n", "<leader>bp", ":bprev<CR>", { desc = "Navigate to previous buffe
 
 -- Plugin general keymap, plugins keymaps are in their .lua file
 keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
+
+----------------------------------------------------
+-- Macros ------------------------------------------
+
+-- Replace visually selected text macro
+keymap.set(
+	"v",
+	"<leader>r", -- Replace
+	"",
+	{ noremap = true, silent = false, desc = "Replace Macros" }
+)
+
+keymap.set(
+	"v",
+	"<leader>rr", -- Replace replace
+	'"hy:%s/<C-r>h/',
+	{ noremap = true, silent = false, desc = "Replace currently selected text" }
+)
+
+keymap.set(
+	"v",
+	"<leader>ra", -- Replace add
+	'"hy:%s/<C-r>h/<C-r>h',
+	{ noremap = true, silent = false, desc = "Add to currently selected text" }
+)
