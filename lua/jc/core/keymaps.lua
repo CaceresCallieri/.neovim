@@ -86,9 +86,12 @@ keymap.set(
 )
 
 -- console.log curent line variable
-keymap.set(
-	"n",
-	"<leader>mc",
-	'_wviwyoconsole.log("<esc>pa: ", <esc>pa)<esc>',
-	{ desc = "console.log variable from current line" }
-)
+
+-- Yank selected and console log it a line below
+local consoleLogMacro = 'yoconsole.log("<esc>pa: ", <esc>pa)<esc>'
+
+-- local consoleLogFromCurrentLine = "_wviw" .. consoleLogMacro
+
+keymap.set("n", "<leader>mc", "_wviw" .. consoleLogMacro, { desc = "console.log variable from current line" })
+
+keymap.set("v", "<leader>mc", consoleLogMacro, { desc = "console.log selected variable" })
