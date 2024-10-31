@@ -84,3 +84,11 @@ keymap.set(
 	'"hy:%s/<C-r>h/<C-r>h',
 	{ noremap = true, silent = false, desc = "Add to currently selected text" }
 )
+
+-- console.log curent line variable
+keymap.set(
+	"n",
+	"<leader>mc",
+	'_wviwyoconsole.log("<esc>pa: ", <esc>pa)<esc>',
+	{ desc = "console.log variable from current line" }
+)
