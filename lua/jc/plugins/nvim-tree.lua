@@ -8,8 +8,11 @@ return {
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 
-		local viewport_width = vim.api.nvim_list_uis()[1].width
-		local viewport_height = vim.api.nvim_list_uis()[1].height
+		-- Dynamically get active viewport size
+		local function get_viewport()
+			local ui = vim.api.nvim_list_uis()[1]
+			return { width = ui.width, height = ui.height }
+		end
 
 		nvimtree.setup({
 			view = {
@@ -17,11 +20,19 @@ return {
 
 				float = {
 					enable = true,
-					open_win_config = {
-						width = 40,
-						height = viewport_height,
-						col = viewport_width, -- Place floating window to the left of the screen
-					},
+					-- Get viewport dinamically to avoid outdated viewport sizes values
+					open_win_config = function()
+						local viewport = get_viewport()
+
+						return {
+							relative = "editor", -- Ensures the float is relative to the editor
+							width = 40,
+							height = viewport.height, -- TODO: Height fit content?
+							col = viewport.width, -- Place floating window to the left of the screen
+							row = 0,
+							border = "rounded",
+						}
+					end,
 				},
 			},
 			-- change folder arrow icons
