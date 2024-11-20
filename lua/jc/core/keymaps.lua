@@ -61,7 +61,11 @@ keymap.set("n", "<leader>o", "", { desc = "Obsidian macros" })
 
 keymap.set("n", "<leader>ot", "G{O- [ ] ", { desc = "Create todo" })
 
-keymap.set("n", "<leader>oc", "0ci[x<esc>ddmaG{p'a", { desc = "Check todo box and move the line to the checked list" })
+keymap.set("n", "<leader>oc", "0ci[x<esc>", { desc = "Check todo box" })
+
+keymap.set("n", "<leader>oC", "0ci[x<esc>ddmaG{p'a", { desc = "Check todo box and move the line to the checked list" })
+
+keymap.set("i", "<A-t>", "- [ ] ", { desc = "Create todo inline from insert mode" })
 
 -- Replace visually selected text macro
 keymap.set(
@@ -85,13 +89,10 @@ keymap.set(
 	{ noremap = true, silent = false, desc = "Add to currently selected text" }
 )
 
--- console.log curent line variable
-
+-- Console.log Macros
 -- Yank selected and console log it a line below
 local consoleLogMacro = 'yoconsole.log("<esc>pa: ", <esc>pa)<esc>'
 
--- local consoleLogFromCurrentLine = "_wviw" .. consoleLogMacro
+keymap.set("v", "<leader>mc", consoleLogMacro, { desc = "console.log selected variable" })
 
 keymap.set("n", "<leader>mc", "_wviw" .. consoleLogMacro, { desc = "console.log variable from current line" })
-
-keymap.set("v", "<leader>mc", consoleLogMacro, { desc = "console.log selected variable" })
