@@ -18,7 +18,23 @@ return {
 				terminalColors = true, -- define vim.g.terminal_color_{0,17}
 
 				colors = { -- add/modify theme and palette colors
-					palette = {},
+					palette = {
+						-- Fg and comments
+						oldWhite = "#D0D0C0",
+						fujiWhite = "#E0E0D0",
+
+						-- Bg Shades
+						sumiInk0 = "#16161B",
+						sumiInk1 = "#18181E",
+						sumiInk2 = "#1a1a20",
+						sumiInk3 = "#17171B", -- Wave background
+						sumiInk4 = "#2A2A35",
+						sumiInk5 = "#363644",
+						sumiInk6 = "#54546B", --fg
+
+						-- Accent color
+						carpYellow = "#C2C2C2",
+					},
 					theme = {
 						all = {
 							ui = {
@@ -47,10 +63,10 @@ return {
 					}
 				end,
 
-				theme = "wave", -- Load "wave" theme when 'background' option is not set
+				theme = "dragon", -- Load theme when 'background' option is not set
 				background = { -- map the value of 'background' option to a theme
-					dark = "wave", -- try "dragon" !
-					light = "lotus",
+					dark = "dragon",
+					light = "wave",
 				},
 			})
 

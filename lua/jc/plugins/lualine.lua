@@ -12,7 +12,7 @@ return {
 			blue = "#80a0ff",
 			cyan = "#7FB4CA",
 			black = "#232323",
-			white = "#D4CFB4",
+			white = "#C2C2C2",
 			red = "#FF5D62",
 			violet = "#786794",
 			grey = "#303030",
@@ -20,7 +20,7 @@ return {
 
 		local bubbles_theme = {
 			normal = {
-				a = { fg = colors.white, bg = colors.violet },
+				a = { fg = colors.white, bg = colors.black },
 				b = { fg = colors.white, bg = colors.grey },
 				c = { fg = colors.white },
 			},
