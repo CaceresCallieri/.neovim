@@ -29,7 +29,7 @@ return {
 						sumiInk2 = "#1a1a20",
 						sumiInk3 = "#141414", -- Wave, Dragon background
 						sumiInk4 = "#2A2A35",
-						sumiInk5 = "#363644",
+						sumiInk5 = "#464646", -- Cursor Line background
 
 						sumiInk6 = "#54546B", --fg
 
