@@ -27,9 +27,10 @@ return {
 						sumiInk0 = "#16161B",
 						sumiInk1 = "#18181E",
 						sumiInk2 = "#1a1a20",
-						sumiInk3 = "#17171B", -- Wave background
+						sumiInk3 = "#141414", -- Wave, Dragon background
 						sumiInk4 = "#2A2A35",
 						sumiInk5 = "#363644",
+
 						sumiInk6 = "#54546B", --fg
 
 						-- Accent color
