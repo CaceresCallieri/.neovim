@@ -35,12 +35,12 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<S-l>", ":tabnext<CR>", { noremap = true, silent = true, desc = "Go to next tab - Shortcut" })
+keymap.set("n", "<S-C-l>", ":tabnext<CR>", { noremap = true, silent = true, desc = "Go to next tab - Shortcut" })
 
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set(
 	"n",
-	"<S-h>",
+	"<S-C-h>",
 	":tabprev<CR>",
 	{ noremap = true, silent = true, desc = "Navigate to previous tab - Shortcut" }
 )
