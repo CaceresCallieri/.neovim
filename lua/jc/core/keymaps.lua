@@ -14,7 +14,7 @@ vim.cmd("command! W w")
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
@@ -41,20 +41,20 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set(
 	{ "n", "i" },
 	"<S-C-l>",
-	"<esc>:tabnext<CR>",
+	"<cmd>tabnext<CR>",
 	{ noremap = true, silent = true, desc = "Go to next tab - Shortcut" }
 )
 keymap.set(
 	{ "n", "i" },
 	"<S-C-h>",
-	"<esc>:tabprev<CR>",
+	"<cmd>tabprev<CR>",
 	{ noremap = true, silent = true, desc = "Navigate to previous tab - Shortcut" }
 )
 
 -- buffer navigation
 keymap.set("n", "<leader>b", "", { desc = "Buffer navigation" })
-keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Navigate to next buffer" })
-keymap.set("n", "<leader>bp", ":bprev<CR>", { desc = "Navigate to previous buffer" })
+keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Navigate to next buffer" })
+keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", { desc = "Navigate to previous buffer" })
 
 -- Plugin general keymap, plugins keymaps are in their .lua file
 keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
@@ -84,14 +84,14 @@ keymap.set(
 keymap.set(
 	"v",
 	"<leader>rr", -- Replace replace
-	'"hy:%s/<C-r>h/',
+	'"hy<cmd>%s/<C-r>h/',
 	{ noremap = true, silent = false, desc = "Replace currently selected text" }
 )
 
 keymap.set(
 	"v",
 	"<leader>ra", -- Replace add
-	'"hy:%s/<C-r>h/<C-r>h',
+	'"hy<cmd>%s/<C-r>h/<C-r>h',
 	{ noremap = true, silent = false, desc = "Add to currently selected text" }
 )
 
