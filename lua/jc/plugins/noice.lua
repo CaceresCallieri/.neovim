@@ -42,9 +42,11 @@ return {
 
 			views = {
 				notify = {
-					position = { row = "100%", col = "100%" }, -- Adjust notification position to bottom
+					position = { row = "100%", col = "100%" }, -- FIX: Adjust notification position to bottom
 				},
 			},
 		})
+
+		vim.keymap.set("n", "<leader>pn", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss current notifications" })
 	end,
 }
