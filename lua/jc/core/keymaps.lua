@@ -29,7 +29,7 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
--- tab navigation
+-- tabs navigation
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
@@ -49,6 +49,12 @@ keymap.set(
 	"<S-C-h>",
 	"<cmd>tabprev<CR>",
 	{ noremap = true, silent = true, desc = "Navigate to previous tab - Shortcut" }
+)
+keymap.set(
+	{ "n", "i" },
+	"<S-C-t>",
+	"<cmd>tabnew<CR>",
+	{ noremap = true, silent = true, desc = "Open new tab - Shortcut" }
 )
 
 -- buffer navigation
@@ -84,14 +90,14 @@ keymap.set(
 keymap.set(
 	"v",
 	"<leader>rr", -- Replace replace
-	'"hy<cmd>%s/<C-r>h/',
+	'"hy:%s/<C-r>h/',
 	{ noremap = true, silent = false, desc = "Replace currently selected text" }
 )
 
 keymap.set(
 	"v",
 	"<leader>ra", -- Replace add
-	'"hy<cmd>%s/<C-r>h/<C-r>h',
+	'"hy:%s/<C-r>h/<C-r>h',
 	{ noremap = true, silent = false, desc = "Add to currently selected text" }
 )
 
