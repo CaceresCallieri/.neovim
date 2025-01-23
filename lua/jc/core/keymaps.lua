@@ -4,8 +4,9 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 -- Commands --------------------------------------------
--- Rewrite :W as :w
+-- Rewrite :X as :x
 vim.cmd("command! W w")
+vim.cmd("command! Q q")
 
 --------------------------------------------------------
 -- General Keymaps -------------------------------------
