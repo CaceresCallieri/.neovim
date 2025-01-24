@@ -102,6 +102,9 @@ keymap.set(
 	{ noremap = true, silent = false, desc = "Add to currently selected text" }
 )
 
+-- Copy all file's contens to system clipboard
+keymap.set("n", "<leader>my", 'gg"+yG', { desc = "Copy file contents to system  clipboard" })
+
 -- Console.log Macros
 -- Yank selected and console log it a line below
 local consoleLogMacro = 'yoconsole.log("<esc>pa: ", <esc>pa)<esc>'
