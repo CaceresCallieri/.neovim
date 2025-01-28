@@ -10,10 +10,8 @@ return {
 			},
 		})
 
-		local keymap = vim.keymap
-		keymap.set("n", "<leader>pc", "", { desc = "Colorizer" }) -- Indicator
-		keymap.set("n", "<leader>pct", ":ColorizerToggle<CR>", { desc = "Toggle Colorizer in current buffer" })
-		keymap.set(
+		vim.keymap.set("n", "<leader>pct", ":ColorizerToggle<CR>", { desc = "Toggle Colorizer in current buffer" })
+		vim.keymap.set(
 			"n",
 			"<leader>pcr",
 			":ColorizerAttachToBuffer<CR>",
