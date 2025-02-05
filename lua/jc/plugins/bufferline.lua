@@ -6,7 +6,11 @@ return {
 		options = {
 			mode = "tabs",
 			separator_style = "slant",
-			buffer_close_icon = "", -- Remove "x" icon, tab can still be removed with mouse by right clicking
+			always_show_bufferline = false,
+			auto_toggle_bufferline = true,
+			show_buffer_close_icons = false,
+			show_close_icon = false,
+			-- TODO: Indicate that a tab has multiple buffers open
 
 			name_formatter = function(buf)
 				if buf.name and buf.name:match("NvimTree") then
