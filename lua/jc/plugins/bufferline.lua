@@ -6,8 +6,10 @@ return {
 		options = {
 			mode = "tabs",
 			separator_style = "slant",
+			-- Avoid showing bufferline when there's only one tab
 			always_show_bufferline = false,
 			auto_toggle_bufferline = true,
+			-- Disable close icons
 			show_buffer_close_icons = false,
 			show_close_icon = false,
 			-- TODO: Indicate that a tab has multiple buffers open
