@@ -27,7 +27,8 @@ keymap.set(
 )
 
 -- Clipboard macros
-keymap.set("n", "<leader>my", 'gg"+yy', { desc = "Copy current line contents to system  clipboard" })
+keymap.set("n", "<leader>my", '"+yy', { desc = "Copy current line contents to system  clipboard" })
+keymap.set("v", "<leader>my", '"+yy', { desc = "Copy visually selected text to system  clipboard" })
 keymap.set("n", "<leader>mY", 'gg"+yG', { desc = "Copy file contents to system  clipboard" })
 
 -- Console.log Macros
