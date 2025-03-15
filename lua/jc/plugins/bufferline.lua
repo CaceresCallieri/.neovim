@@ -5,7 +5,7 @@ return {
 	opts = {
 		options = {
 			mode = "tabs",
-			separator_style = "slant",
+			separator_style = "thin",
 			-- Avoid showing bufferline when there's only one tab
 			always_show_bufferline = false,
 			auto_toggle_bufferline = true,
