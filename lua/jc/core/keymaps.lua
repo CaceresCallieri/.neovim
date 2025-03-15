@@ -67,3 +67,4 @@ keymap.set("n", "<C-b>", "<C-6>", { noremap = true, silent = true, desc = "Navig
 -- Plugin general keymap, plugins keymaps are in their respective .lua file
 keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
 keymap.set("n", "<leader>pc", "", { desc = "Color related plugins keymaps" })
+keymap.set("n", "<leader>e", "", { desc = "File explorers" })

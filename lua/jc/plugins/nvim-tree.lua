@@ -72,12 +72,12 @@ return {
 
 		keymap.set(
 			"n",
-			"<leader>e",
+			"<leader>ee",
 			"<cmd>NvimTreeFindFileToggle<CR>",
-			{ desc = "Toggle file explorer on current file" } -- This is the "default" option
+			{ desc = "Toggle nvim-tree on current file" } -- This is the "default" option
 		)
-		keymap.set("n", "<leader>Ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-		keymap.set("n", "<leader>Ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
-		keymap.set("n", "<leader>Er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+		keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" })
+		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse nvim-tree" })
+		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh nvim-tree" })
 	end,
 }
