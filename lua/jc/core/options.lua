@@ -48,13 +48,13 @@ opt.swapfile = false
 -- Center cursor by x lines
 opt.scrolloff = 15
 
--- Transparency WIP
--- vim.cmd([[
---   highlight Normal guibg=none
---   highlight NonText guibg=none
---   highlight Normal ctermbg=none
---   highlight NonText ctermbg=none
--- ]])
+-- Prevent "o" and "O" from opening a new line commented
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		vim.opt.formatoptions:remove("o")
+	end,
+})
 
 -- Neovide options
 if vim.g.neovide then
