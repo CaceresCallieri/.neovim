@@ -1,0 +1,14 @@
+return {
+	"olimorris/codecompanion.nvim",
+	config = true,
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+	},
+	-- config = function()
+	-- 	local keymap = vim.keymap
+	-- 	keymap.set("n", "<leader>a", "", { desc = "Code Companion" })
+	--
+	-- 	return true
+	-- end,
+}
