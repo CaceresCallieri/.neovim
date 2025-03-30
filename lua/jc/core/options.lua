@@ -1,5 +1,11 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+-- TODO: Remove in line diagnostic messages as they are made redundant by the virtual lines
+vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+
+-- TODO: Apply only to hover windows ("K")
+-- vim.o.winborder = "rounded" -- Doesn't play nice with plugins windows, wait for fixes, try later on
+
 local opt = vim.opt
 
 opt.relativenumber = true
