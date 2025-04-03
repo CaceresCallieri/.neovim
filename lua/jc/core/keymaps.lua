@@ -4,15 +4,15 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 -- Commands --------------------------------------------
--- Rewrite :X as :x
+-- Rewrite :"X" as :"x"
 vim.cmd("command! W w")
 vim.cmd("command! Q q")
 
 --------------------------------------------------------
 -- General Keymaps -------------------------------------
 
--- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- save shortcut
+keymap.set("n", "<M-w>", "<cmd>w<CR>", { desc = "Save file" })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
