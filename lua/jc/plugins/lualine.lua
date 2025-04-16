@@ -4,8 +4,6 @@ return {
 	config = function()
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
-		local noice_mode_get = require("noice").api.statusline.mode.get
-		local noice_mode_has = require("noice").api.statusline.mode.has
 
 		-- Theme: Kanagawa Wave
 		local colors = {
@@ -18,11 +16,11 @@ return {
 			grey = "#303030",
 		}
 
-		local bubbles_theme = {
+		local custom_theme = {
 			normal = {
 				a = { fg = colors.white, bg = colors.black },
 				b = { fg = colors.white, bg = colors.grey },
-				c = { fg = colors.white },
+				c = { fg = colors.white, bg = nil }, -- FIX: Set background to be transparent
 			},
 
 			insert = { a = { fg = colors.black, bg = colors.blue } },
@@ -39,7 +37,7 @@ return {
 		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
-				theme = bubbles_theme,
+				theme = custom_theme,
 				component_separators = "",
 				section_separators = { left = "", right = "" },
 			},
@@ -49,8 +47,6 @@ return {
 				lualine_c = {
 					"%=", --[[ add your center compoentnts here in place of this comment ]]
 					{
-						noice_mode_get,
-						cond = noice_mode_has,
 						color = { fg = colors.white },
 					},
 				},
