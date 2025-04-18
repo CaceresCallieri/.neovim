@@ -19,6 +19,7 @@ return {
 					i = {
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
+						["<C-d>"] = actions.delete_buffer,
 						["<C-q>"] = "close",
 					},
 					n = {
@@ -49,6 +50,7 @@ return {
 
 		-- Shortcuts
 		keymap.set("n", "<C-f>", builtin.find_files, { desc = "Telescope find files" })
+		keymap.set("n", "<C-b>", builtin.buffers, { desc = "Telescope buffers" })
 
 		-- Leader keymaps
 		keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
