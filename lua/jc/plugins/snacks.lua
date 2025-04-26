@@ -2,6 +2,17 @@ return {
 	"folke/snacks.nvim",
 	---@type snacks.Config
 	opts = {
+		-- TODO: Extract each snacks.plugin into its own file
+		-- TODO: Add dashboard
+		indent = {
+			enabled = true,
+			animate = {
+				easing = "linear",
+				duration = {
+					total = 200,
+				},
+			},
+		},
 		picker = {
 			-- your picker configuration comes here
 			win = {
