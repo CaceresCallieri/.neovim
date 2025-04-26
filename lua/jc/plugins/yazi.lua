@@ -10,6 +10,13 @@ return {
 			"<cmd>Yazi<cr>",
 			desc = "Open yazi at the current file",
 		},
+		-- Shortcut for yazi
+		{
+			"<A-y>",
+			mode = { "n", "v" },
+			"<cmd>Yazi<cr>",
+			desc = "Open yazi at the current file",
+		},
 		{
 			-- Open in the current working directory
 			"<leader>eY",
@@ -37,12 +44,13 @@ return {
 			copy_relative_path_to_selected_files = "<c-y>",
 			send_to_quickfix_list = "<c-q>",
 			change_working_directory = "<c-\\>",
+			-- TODO: Quit with esc key
 		},
 	},
 	-- 👇 if you use `open_for_directories=true`, this is recommended
 	init = function()
 		-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
-		-- vim.g.loaded_netrw = 1
+		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 	end,
 }
