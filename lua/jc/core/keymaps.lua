@@ -11,6 +11,23 @@ vim.cmd("command! Q q")
 --------------------------------------------------------
 -- General Keymaps -------------------------------------
 
+-- Keymap to toggle virtual_lines on/off
+local virtual_text_config = vim.diagnostic.config().virtual_text
+
+keymap.set("n", "<A-d>", function()
+	if vim.diagnostic.config().virtual_lines then
+		vim.diagnostic.config({
+			virtual_lines = false,
+			virtual_text = virtual_text_config,
+		})
+	else
+		vim.diagnostic.config({
+			virtual_lines = true,
+			virtual_text = false,
+		})
+	end
+end, { desc = "Toggle virtual_lines for diagnostics" })
+
 -- save shortcut
 keymap.set("n", "<M-w>", "<cmd>w<CR>", { desc = "Save file" })
 
