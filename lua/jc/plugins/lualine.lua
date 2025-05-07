@@ -1,6 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = { "nvim-tree/nvim-web-devicons", "yavorski/lualine-macro-recording.nvim" },
 	config = function()
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
@@ -44,12 +44,7 @@ return {
 			sections = {
 				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
 				lualine_b = { "filename", "branch" },
-				lualine_c = {
-					"%=", --[[ add your center compoentnts here in place of this comment ]]
-					{
-						color = { fg = colors.white },
-					},
-				},
+				lualine_c = { "macro_recording", "%S" },
 				lualine_x = {
 					{
 						lazy_status.updates,
