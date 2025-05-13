@@ -11,14 +11,29 @@ local function show_macro_indicator(reg)
 	end
 
 	macro_buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_lines(macro_buf, 0, -1, false, { "Recording @" .. reg })
+
+	-- Text to display
+	local text = "Recording @" .. reg
+
+	-- Calculate padding for horizontal centering
+	local win_width = 20 -- Width of the floating window
+	local padding = math.floor((win_width - #text) / 2)
+	local padded_text = string.rep(" ", padding) .. text .. string.rep(" ", padding)
+
+	-- Ensure the text fits within the window width
+	if #padded_text > win_width then
+		padded_text = padded_text:sub(1, win_width)
+	end
+
+	-- Set the text in the buffer
+	vim.api.nvim_buf_set_lines(macro_buf, 0, -1, false, { padded_text })
 
 	macro_win = vim.api.nvim_open_win(macro_buf, false, {
 		relative = "editor",
-		width = 20,
+		width = win_width,
 		height = 1,
 		row = 0, -- vim.o.lines to get the height of the editor
-		col = vim.o.columns - (vim.o.columns / 2) - 10,
+		col = vim.o.columns - (vim.o.columns / 2) - (win_width / 2),
 		style = "minimal",
 		border = "rounded",
 		noautocmd = true,
