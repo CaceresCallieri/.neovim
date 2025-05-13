@@ -7,7 +7,7 @@ return {
 			animate = {
 				easing = "linear",
 				duration = {
-					total = 200,
+					total = 250,
 				},
 			},
 		},
