@@ -118,6 +118,11 @@ return {
 					ellipsis_char = "...",
 				}),
 			},
+
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
 		})
 	end,
 }
