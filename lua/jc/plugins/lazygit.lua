@@ -14,6 +14,7 @@ return {
 	-- setting the keybinding for LazyGit with 'keys' is recommended in
 	-- order to load the plugin when the command is run for the first time
 	keys = {
-		{ "<leader>l", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
+		{ "<leader>g", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
+		-- TODO: Edit file in current neovim instance
 	},
 }
