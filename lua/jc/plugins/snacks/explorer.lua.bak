@@ -1,0 +1,23 @@
+return {
+	"folke/snacks.nvim",
+	---@type snacks.Config
+	opts = {
+		explorer = {
+			replace_netrw = false,
+		},
+		picker = {
+			sources = {
+				explorer = {},
+			},
+		},
+	},
+	keys = {
+		{
+			"<leader>es",
+			function()
+				Snacks.explorer.open()
+			end,
+			desc = "Snacks Explorer",
+		},
+	},
+}
