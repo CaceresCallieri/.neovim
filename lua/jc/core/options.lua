@@ -19,6 +19,13 @@ opt.number = true -- Show absolute number on current line
 
 opt.conceallevel = 1 -- Required for obsidian.nvim
 
+--------- Show trailing whitespace as dots ---------
+-- Enable showing whitespace characters
+vim.opt.list = true
+-- Show trailing spaces as a dot (·)
+vim.opt.listchars = { tab = "  ", trail = "·" }
+------------------------------------------------------
+
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
@@ -36,7 +43,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
--- Appearance
+--------- Appearance
 
 -- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
