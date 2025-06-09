@@ -1,5 +1,6 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+-- Show diagnostics in inline virtual text
 -- Initial config: virtual_text on, virtual_lines off
 vim.diagnostic.config({
 	virtual_text = {
@@ -9,26 +10,28 @@ vim.diagnostic.config({
 	virtual_lines = false,
 })
 
--- TODO: Apply only to hover windows ("K")
--- vim.o.winborder = "rounded" -- Doesn't play nice with plugins windows, wait for fixes, try later on
-
 local opt = vim.opt
+
+-- Prevent "o" and "O" from opening a new line commented
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		opt.formatoptions:remove("o")
+	end,
+})
 
 opt.relativenumber = true
 opt.number = true -- Show absolute number on current line
 
-opt.conceallevel = 1 -- Required for obsidian.nvim
-
---------- Show trailing whitespace as dots ---------
+-- Show trailing whitespace as dots
 -- Enable showing whitespace characters
-vim.opt.list = true
+opt.list = true
 -- Show trailing spaces as a dot (·)
-vim.opt.listchars = { tab = "  ", trail = "·" }
-------------------------------------------------------
+opt.listchars = { tab = "  ", trail = "·" }
 
 -- tabs & indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
+opt.tabstop = 4 -- spaces for tabs (prettier default)
+opt.shiftwidth = 4 -- spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
@@ -44,9 +47,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 opt.cursorline = true -- highlight the current cursor line
 
 --------- Appearance
-
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
+-- turn on termguicolors
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
@@ -67,13 +68,7 @@ opt.swapfile = false
 -- Center cursor by x lines
 opt.scrolloff = 15
 
--- Prevent "o" and "O" from opening a new line commented
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	callback = function()
-		vim.opt.formatoptions:remove("o")
-	end,
-})
+opt.conceallevel = 1 -- Required for obsidian.nvim
 
 -- Neovide options
 if vim.g.neovide then
