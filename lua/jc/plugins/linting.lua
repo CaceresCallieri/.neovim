@@ -18,7 +18,17 @@ return {
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 			group = lint_augroup,
 			callback = function()
-				lint.try_lint()
+				-- Only run eslint_d if a config file is present
+				local has_eslint_config = (
+					vim.fn.filereadable(".eslintrc") == 1
+					or vim.fn.filereadable(".eslintrc.js") == 1
+					or vim.fn.filereadable(".eslintrc.json") == 1
+					or vim.fn.filereadable("package.json") == 1
+				)
+
+				if has_eslint_config then
+					lint.try_lint()
+				end
 			end,
 		})
 
