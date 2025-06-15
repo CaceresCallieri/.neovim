@@ -1,8 +1,17 @@
 -- snacks.picker
 return {
 	"folke/snacks.nvim",
+	lazy = false,
+	priority = 1000,
+	-- TODO: Set vim.ui.select to use snacks picker
 	opts = {
 		picker = {
+			sources = {
+				files = {
+					hidden = true, -- Show hidden files
+					follow = true, -- Follow symlinks
+				},
+			},
 			win = {
 				input = {
 					keys = {
@@ -21,16 +30,23 @@ return {
 		{
 			"<leader>ff",
 			function()
-				Snacks.picker.smart()
+				Snacks.picker.files()
 			end,
 			desc = "Smart Find Files",
 		},
 		{
 			"<c-f>",
 			function()
-				Snacks.picker.smart()
+				Snacks.picker.files()
 			end,
 			desc = "Smart Find Files - Shortcut",
+		},
+		{
+			"<leader>fs",
+			function()
+				Snacks.picker.smart()
+			end,
+			desc = "Smart Search",
 		},
 		{
 			"<leader>fb",
