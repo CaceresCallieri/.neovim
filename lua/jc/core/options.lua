@@ -1,5 +1,3 @@
-vim.cmd("let g:netrw_liststyle = 3")
-
 -- Show diagnostics in inline virtual text
 -- Initial config: virtual_text on, virtual_lines off
 vim.diagnostic.config({
@@ -65,19 +63,35 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
--- Center cursor by x lines
+-- Center cursor by x amount of lines
 opt.scrolloff = 15
 
 opt.conceallevel = 1 -- Required for obsidian.nvim
 
 -- Neovide options
 if vim.g.neovide then
-	vim.g.neovide_cursor_animation_length = 0.1
+	vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12" -- Set font for Neovide
+
+	vim.g.neovide_normal_opacity = 0.5
+
+	-- Floating windows
+	vim.g.neovide_floating_corner_radius = 0.4
+	vim.g.neovide_floating_blur_amount_x = 2.5
+	vim.g.neovide_floating_blur_amount_y = 2.5
+
+	-- Floating window shadows
+	vim.g.neovide_floating_shadow = false
+	vim.g.neovide_floating_z_height = 0
+	vim.g.neovide_light_angle_degrees = 0
+	vim.g.neovide_light_radius = 0
+
+	-- Cursor options
+	vim.g.neovide_cursor_animation_length = 0.05
 	vim.g.neovide_cursor_trail_size = 0
 	vim.g.neovide_cursor_animate_command_line = false
-	vim.g.neovide_cursor_smooth_blink = true -- TODO: Add relevant options to make this work
+	-- vim.g.neovide_cursor_smooth_blink = true -- TODO: Add relevant options to make this work
 
 	-- Neovide only keymaps
-	vim.keymap.set("n", "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
+	vim.keymap.set({ "i", "n" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
 	-- vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
 end

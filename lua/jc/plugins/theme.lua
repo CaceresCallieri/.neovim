@@ -26,7 +26,7 @@ return {
 					sumiInk0 = "#16161B",
 					sumiInk1 = "#18181E",
 					sumiInk2 = "#1a1a20",
-					sumiInk3 = "#1f1f28", -- Wave, Dragon background
+					sumiInk3 = "#000000", -- Wave, Dragon background
 					sumiInk4 = "#2A2A35",
 					sumiInk5 = "#464646", -- Cursor Line background
 
