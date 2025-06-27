@@ -87,9 +87,5 @@ return {
 		vim.cmd("colorscheme kanagawa")
 
 		require("kanagawa").load("wave")
-
-		-- Set StatusLine to be transparent
-		vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 	end,
 }
