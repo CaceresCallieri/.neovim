@@ -20,3 +20,11 @@ vim.g.neovide_cursor_animate_command_line = false -- FIX: Does not work
 -- Neovide only keymaps
 vim.keymap.set({ "i", "n" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
 -- vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+
+-- Set up plugin floating windows winblend to match Neovide's transparency
+local yazi_installed = pcall(require, "yazi")
+if yazi_installed then
+	require("yazi").setup({
+		yazi_floating_window_winblend = 90, -- Set your desired transparency
+	})
+end
