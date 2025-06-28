@@ -1,7 +1,7 @@
 require("jc.core")
 require("jc.lazy")
 if vim.g.neovide then
-	require("neovide")
+	require("jc.neovide")
 end
 
 -- For TMUX, allows tmux-windows-name plugin to remane tmux window when opening and closing neovim instances
