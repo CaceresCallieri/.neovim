@@ -16,20 +16,21 @@ return {
 			grey = "#303030",
 		}
 
+		-- No background for transparency
 		local custom_theme = {
 			normal = {
-				a = { fg = colors.white, bg = colors.black },
-				b = { fg = colors.white, bg = colors.grey },
+				a = { fg = colors.white, bg = nil },
+				b = { fg = colors.white, bg = nil },
 				c = { fg = colors.white, bg = nil },
 			},
 
-			insert = { a = { fg = colors.black, bg = colors.blue } },
-			visual = { a = { fg = colors.black, bg = colors.cyan } },
-			replace = { a = { fg = colors.black, bg = colors.red } },
+			insert = { a = { fg = colors.black, bg = nil } },
+			visual = { a = { fg = colors.black, bg = nil } },
+			replace = { a = { fg = colors.black, bg = nil } },
 
 			inactive = {
-				a = { fg = colors.white, bg = colors.black },
-				b = { fg = colors.white, bg = colors.black },
+				a = { fg = colors.white, bg = nil },
+				b = { fg = colors.white, bg = nil },
 				c = { fg = colors.white },
 			},
 		}
@@ -39,10 +40,9 @@ return {
 			options = {
 				theme = custom_theme,
 				component_separators = "",
-				section_separators = { left = "", right = "" },
 			},
 			sections = {
-				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+				lualine_a = { { "mode", right_padding = 2 } },
 				lualine_b = { "filename", "branch" },
 				lualine_x = {
 					{
@@ -53,7 +53,7 @@ return {
 				},
 				lualine_y = { "filetype", "progress" },
 				lualine_z = {
-					{ "location", separator = { right = "" }, left_padding = 2 },
+					{ "location", left_padding = 2 },
 				},
 			},
 			inactive_sections = {
