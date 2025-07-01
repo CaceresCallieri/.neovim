@@ -1,22 +1,4 @@
--- Show diagnostics in inline virtual text
--- Initial config: virtual_text on, virtual_lines off
-vim.diagnostic.config({
-	virtual_text = {
-		prefix = "●",
-		spacing = 1,
-	},
-	virtual_lines = false,
-})
-
 local opt = vim.opt
-
--- Prevent "o" and "O" from opening a new line commented
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	callback = function()
-		opt.formatoptions:remove("o")
-	end,
-})
 
 opt.relativenumber = true
 opt.number = true -- Show absolute number on current line
@@ -67,3 +49,24 @@ opt.swapfile = false
 opt.scrolloff = 15
 
 opt.conceallevel = 1 -- Required for obsidian.nvim
+
+-- Prevent "o" and "O" from opening a new line commented
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		opt.formatoptions:remove("o")
+	end,
+})
+
+-- Show diagnostics in inline virtual text
+-- Initial config: virtual_text on, virtual_lines off
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "●",
+		spacing = 1,
+	},
+	virtual_lines = false,
+})
+
+-- Highlighting options
+vim.api.nvim_set_hl(0, "@keyword", { italic = true })
