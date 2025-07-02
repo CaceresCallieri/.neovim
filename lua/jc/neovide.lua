@@ -1,5 +1,5 @@
 -- Neovide options
-vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12" -- Set font for Neovide
+vim.o.guifont = "IBM Plex Mono:h13" -- Set font for Neovide
 
 vim.g.neovide_opacity = 0.7
 
@@ -22,6 +22,7 @@ vim.keymap.set({ "i", "n" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard"
 -- vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
 
 -- Set up plugin floating windows winblend to match Neovide's transparency
+
 local yazi_installed = pcall(require, "yazi")
 if yazi_installed then
 	require("yazi").setup({
