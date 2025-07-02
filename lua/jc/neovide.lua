@@ -18,10 +18,15 @@ vim.g.neovide_cursor_animate_command_line = false -- FIX: Does not work
 -- vim.g.neovide_cursor_smooth_blink = true -- TODO: Add relevant options to make this work
 
 -- Neovide only keymaps
-vim.keymap.set({ "i", "n" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
--- vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+vim.keymap.set({ "n", "v" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
+vim.keymap.set("i", "<C-S-V>", '<esc>"+pa', { desc = "Paste system clipboard" })
+vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
 
 -- Set up plugin floating windows winblend to match Neovide's transparency
+local lazygit_installed = pcall(require, "lazygit")
+if lazygit_installed then
+	vim.g.lazygit_floating_window_winblend = floating_window_transparency -- Example: set transparency to 20
+end
 
 local yazi_installed = pcall(require, "yazi")
 if yazi_installed then
