@@ -85,6 +85,7 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+
 			["svelte"] = function()
 				-- configure svelte server
 				lspconfig["svelte"].setup({
@@ -100,6 +101,7 @@ return {
 					end,
 				})
 			end,
+
 			["graphql"] = function()
 				-- configure graphql language server
 				lspconfig["graphql"].setup({
@@ -107,6 +109,7 @@ return {
 					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 				})
 			end,
+
 			["emmet_ls"] = function()
 				-- configure emmet language server
 				lspconfig["emmet_ls"].setup({
@@ -123,6 +126,7 @@ return {
 					},
 				})
 			end,
+
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({
@@ -140,6 +144,10 @@ return {
 					},
 				})
 			end,
+
+			require("lspconfig").qmlls.setup({
+				cmd = { "qmlls", "-E" },
+			}),
 		})
 	end,
 }
