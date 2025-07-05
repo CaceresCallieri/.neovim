@@ -12,7 +12,7 @@ return {
 				style = "out",
 				easing = "linear",
 				duration = {
-					total = 250,
+					total = 300,
 				},
 			},
 		},
