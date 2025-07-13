@@ -27,12 +27,12 @@ vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
 -- Set up plugin floating windows winblend to match Neovide's transparency
 local lazygit_installed = pcall(require, "lazygit")
 if lazygit_installed then
-	vim.g.lazygit_floating_window_winblend = floating_window_transparency -- Example: set transparency to 20
+	vim.g.lazygit_floating_window_winblend = floating_window_transparency
 end
 
 local yazi_installed = pcall(require, "yazi")
 if yazi_installed then
 	require("yazi").setup({
-		yazi_floating_window_winblend = floating_window_transparency, -- Set your desired transparency
+		yazi_floating_window_winblend = floating_window_transparency,
 	})
 end

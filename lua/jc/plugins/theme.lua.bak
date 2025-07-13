@@ -8,7 +8,7 @@ return {
 			compile = false, -- enable compiling the colorscheme
 			undercurl = true, -- enable undercurls
 			commentStyle = { italic = true },
-			functionStyle = {},
+			functionStyle = { italic = true, bold = true },
 			keywordStyle = { italic = true },
 			statementStyle = { bold = true },
 			typeStyle = {},
@@ -21,6 +21,8 @@ return {
 					-- Fg and comments
 					oldWhite = "#D0D0C0",
 					fujiWhite = "#E0E0D0",
+
+					lotusWhite3 = "#000000",
 
 					-- Bg Shades
 					sumiInk0 = "#16161B",
@@ -60,11 +62,11 @@ return {
 					-- Borderless telescope, if no background is specified, inherints transparent if true
 					TelescopeTitle = { fg = theme.ui.special, bold = true },
 					-- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-					TelescopePromptBorder = { fg = "#C2C2C2" },
-					TelescopeResultsNormal = { fg = theme.ui.fg_dim },
-					TelescopeResultsBorder = { fg = "#C2C2C2" },
+					TelescopePromptBorder = { fg = "#C2C2C2", bg = "none" },
+					TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = "none" },
+					TelescopeResultsBorder = { fg = "#C2C2C2", bg = "none" },
 					-- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-					TelescopePreviewBorder = { fg = "#C2C2C2" },
+					TelescopePreviewBorder = { fg = "#C2C2C2", bg = "none" },
 
 					-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
 					NormalDark = { fg = theme.ui.fg_dim, bg = "none" },
