@@ -16,13 +16,17 @@ vim.o.pumblend = floating_window_transparency -- Set transparency for popup menu
 -- Cursor options
 vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_trail_size = 0
-vim.g.neovide_cursor_animate_command_line = false -- FIX: Does not work
+vim.g.neovide_cursor_animate_command_line = false -- Does not work with noice cmdline
 -- vim.g.neovide_cursor_smooth_blink = true -- TODO: Add relevant options to make this work
 
--- Neovide only keymaps
+---- Neovide only keymaps
+-- Clipboard keymaps
 vim.keymap.set({ "n", "v" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
 vim.keymap.set("i", "<C-S-V>", '<esc>"+pa', { desc = "Paste system clipboard" })
 vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
+
+-- General keymaps
+vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word backward in insert mode" })
 
 -- Set up plugin floating windows winblend to match Neovide's transparency
 local lazygit_installed = pcall(require, "lazygit")
