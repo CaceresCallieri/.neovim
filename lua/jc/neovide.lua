@@ -17,7 +17,9 @@ vim.o.pumblend = floating_window_transparency -- Set transparency for popup menu
 vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_trail_size = 0
 vim.g.neovide_cursor_animate_command_line = false -- Does not work with noice cmdline
--- vim.g.neovide_cursor_smooth_blink = true -- TODO: Add relevant options to make this work
+
+vim.opt.guicursor = "n:block-blinkwait1000-blinkon500-blinkoff500,i:ver25-blinkwait500-blinkon500-blinkoff500"
+vim.g.neovide_cursor_smooth_blink = true
 
 ---- Neovide only keymaps
 -- Clipboard keymaps
