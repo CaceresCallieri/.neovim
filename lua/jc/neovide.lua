@@ -1,5 +1,5 @@
 -- Neovide options
-vim.o.guifont = "IBM Plex Mono:h13" -- Set font for Neovide
+vim.o.guifont = "IBM Plex Mono:h12" -- Set font for Neovide
 
 vim.g.neovide_opacity = 0.7
 
