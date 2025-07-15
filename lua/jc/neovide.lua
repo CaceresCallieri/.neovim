@@ -5,8 +5,8 @@ vim.g.neovide_opacity = 0.7
 
 -- Floating windows
 vim.g.neovide_floating_corner_radius = 0.4
-vim.g.neovide_floating_blur_amount_x = 3
-vim.g.neovide_floating_blur_amount_y = 3
+vim.g.neovide_floating_blur_amount_x = 4
+vim.g.neovide_floating_blur_amount_y = 4
 
 local floating_window_transparency = 80
 
