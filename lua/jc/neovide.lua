@@ -1,7 +1,16 @@
 -- Neovide options
-vim.o.guifont = "IBM Plex Mono:h12" -- Set font for Neovide
+vim.o.guifont = "IBM Plex Mono:h11" -- Set font for Neovide
 
-vim.g.neovide_opacity = 0.7
+-- Padding
+local window_padding = 8
+vim.g.neovide_padding_top = window_padding
+vim.g.neovide_padding_bottom = window_padding
+vim.g.neovide_padding_right = window_padding
+vim.g.neovide_padding_left = window_padding
+
+-- vim.g.neovide_normal_opacity = 0.6
+vim.g.neovide_opacity = 0.5
+vim.g.transparency = 0.9
 
 -- Floating windows
 vim.g.neovide_floating_corner_radius = 0.4
@@ -14,10 +23,11 @@ vim.o.winblend = floating_window_transparency -- Set transparency for floating w
 vim.o.pumblend = floating_window_transparency -- Set transparency for popup menus
 
 -- Cursor options
-vim.g.neovide_cursor_animation_length = 0.05
+vim.g.neovide_cursor_animation_length = 0.075
 vim.g.neovide_cursor_trail_size = 0
 vim.g.neovide_cursor_animate_command_line = false -- Does not work with noice cmdline
 
+-- Cursor blinking animation
 vim.opt.guicursor = "n:block-blinkwait1000-blinkon500-blinkoff500,i:ver25-blinkwait500-blinkon500-blinkoff500"
 vim.g.neovide_cursor_smooth_blink = true
 
