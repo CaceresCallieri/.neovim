@@ -40,15 +40,18 @@ vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
 -- General keymaps
 vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word backward in insert mode" })
 
--- Set up plugin floating windows winblend to match Neovide's transparency
-local lazygit_installed = pcall(require, "lazygit")
-if lazygit_installed then
-	vim.g.lazygit_floating_window_winblend = floating_window_transparency
-end
+-- Simple floating window transparency system
+vim.api.nvim_create_autocmd({ "WinNew", "BufWinEnter" }, {
+	callback = function()
+		vim.schedule(function()
+			local win = vim.api.nvim_get_current_win()
+			local buf = vim.api.nvim_win_get_buf(win)
+			local config = vim.api.nvim_win_get_config(win)
 
-local yazi_installed = pcall(require, "yazi")
-if yazi_installed then
-	require("yazi").setup({
-		yazi_floating_window_winblend = floating_window_transparency,
-	})
-end
+			-- Apply transparency to floating windows and specific plugin types
+			if config.relative ~= "" or vim.bo[buf].buftype == "terminal" then
+				vim.api.nvim_win_set_option(win, "winblend", floating_window_transparency)
+			end
+		end)
+	end,
+})
