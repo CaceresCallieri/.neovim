@@ -16,5 +16,8 @@ return {
 
 		-- Disable folding on alpha buffer
 		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+
+		-- Always run alpha, even when there is an specified directory as a command argument
+		vim.cmd("Alpha")
 	end,
 }
