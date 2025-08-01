@@ -3,7 +3,6 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local lualine = require("lualine")
-		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
 		-- Theme: Kanagawa Wave
 		local colors = {
@@ -24,9 +23,9 @@ return {
 				c = { fg = colors.white, bg = nil },
 			},
 
-			insert = { a = { fg = colors.black, bg = nil } },
-			visual = { a = { fg = colors.black, bg = nil } },
-			replace = { a = { fg = colors.black, bg = nil } },
+			insert = { a = { fg = colors.white, bg = nil } },
+			visual = { a = { fg = colors.white, bg = nil } },
+			replace = { a = { fg = colors.white, bg = nil } },
 
 			inactive = {
 				a = { fg = colors.white, bg = nil },
@@ -42,19 +41,11 @@ return {
 				component_separators = "",
 			},
 			sections = {
-				lualine_a = { { "mode", right_padding = 2 } },
-				lualine_b = { "filename", "branch" },
-				lualine_x = {
-					{
-						lazy_status.updates,
-						cond = lazy_status.has_updates,
-						color = { fg = colors.cyan },
-					},
-				},
-				lualine_y = { "filetype", "progress" },
-				lualine_z = {
-					{ "location", left_padding = 2 },
-				},
+				lualine_a = { "mode" },
+				lualine_b = { "branch" },
+				lualine_x = {},
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
 			},
 			inactive_sections = {
 				lualine_a = { "filename" },
