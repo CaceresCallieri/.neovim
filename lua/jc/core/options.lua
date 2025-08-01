@@ -1,3 +1,17 @@
+-- Set directory given in nvim argument to current working directory
+if vim.fn.argc() == 1 then
+	local arg = vim.fn.argv(0)
+	-- Ensure arg is a string, not an array
+	if type(arg) == "string" then
+		local stat = vim.loop.fs_stat(arg)
+		if stat and stat.type == "directory" then
+			vim.cmd("cd " .. arg)
+		elseif stat and stat.type == "file" then
+			vim.cmd("cd " .. vim.fn.fnamemodify(arg, ":h"))
+		end
+	end
+end
+
 local opt = vim.opt
 
 opt.relativenumber = true
