@@ -14,7 +14,28 @@ return {
 		telescope.setup({
 			defaults = {
 				path_display = { "smart" },
-				file_ignore_patterns = { "node_modules" },
+				-- Enhanced ignore patterns to skip large directories and temp files
+				file_ignore_patterns = {
+					"node_modules",
+					".git",
+					"%.lock",
+					"target/",
+					"build/",
+					"dist/",
+					"%.cache",
+					"%.tmp",
+					"%.log",
+				},
+				-- Memory protection: limit cached pickers and entries to prevent RAM issues
+				cache_picker = {
+					num_pickers = 5,
+					limit_entries = 1000,
+				},
+				-- Performance optimizations to prevent UI lag
+				scroll_strategy = "limit",
+				selection_strategy = "reset",
+				sorting_strategy = "ascending",
+				layout_strategy = "horizontal",
 				mappings = {
 					i = {
 						["<C-k>"] = actions.move_selection_previous,
@@ -31,13 +52,53 @@ return {
 			pickers = {
 				find_files = {
 					hidden = true,
-					follow = true, -- Allow symlinks to appear on search results
+					follow = true, -- Keep symlink support for dotfiles
+					cwd = vim.fn.getcwd(), -- Always start from current working directory
+					-- Use fd with safety limits to prevent system freeze
+					find_command = {
+						"fd",
+						"--type",
+						"f",
+						"--follow",
+						"--hidden",
+						"--max-depth",
+						"8", -- Prevent deep directory traversal
+						"--max-results",
+						"10000", -- Cap total results to prevent RAM overflow
+					},
+					-- Additional ignore patterns specific to file finding
+					file_ignore_patterns = {
+						"node_modules",
+						".git",
+						"%.lock",
+						"target/",
+						"build/",
+						"dist/",
+						"%.cache",
+						"%.tmp",
+						"%.log",
+					},
 				},
 				live_grep = {
-					file_ignore_patterns = { "node_modules", ".git" },
+					file_ignore_patterns = { "node_modules", ".git", "%.lock" },
 					additional_args = function(_)
-						return { "--hidden", "--follow" } -- Allow find string to search symlinks and hidden files
+						return {
+							"--hidden",
+							"--follow", -- Keep symlink support
+							"--max-depth=8", -- Match find_files depth limit
+							"--max-count=1000", -- Limit matches per file to prevent hang
+						}
 					end,
+				},
+			},
+
+			-- Optimize fzf extension for better performance
+			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true, -- Use fzf for all sorting
+					override_file_sorter = true, -- Use fzf for file sorting
+					case_mode = "smart_case", -- Smart case matching
 				},
 			},
 		})
