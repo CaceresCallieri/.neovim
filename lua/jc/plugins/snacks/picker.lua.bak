@@ -1,8 +1,8 @@
 -- snacks.picker
 return {
 	"folke/snacks.nvim",
-	lazy = false,
 	priority = 1000,
+	lazy = false,
 	-- TODO: Set vim.ui.select to use snacks picker
 	opts = {
 		picker = {
@@ -12,17 +12,23 @@ return {
 					follow = true, -- Follow symlinks
 				},
 			},
+			layout = {
+				backdrop = false,
+			},
 			win = {
 				input = {
+					wo = { winblend = 90 },
 					keys = {
-						["<c-q>"] = "close",
+						["<C-q>"] = "close",
 					},
 				},
 				list = {
+					wo = { winblend = 90 },
 					keys = {
 						-- ["<C-d>"] = "delete_buffer", -- TODO: Investigate correct implementation
 					},
 				},
+				preview = { wo = { winblend = 90 } },
 			},
 		},
 	},
