@@ -17,6 +17,9 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true -- Show absolute number on current line
 
+vim.o.cmdheight = 0
+vim.o.linespace = 6
+
 -- Show trailing whitespace as dots
 -- Enable showing whitespace characters
 opt.list = true
