@@ -42,6 +42,14 @@ return {
 			end
 		end
 
+		-- Check for manpage commands in command line arguments
+		if should_run_alpha then
+			local cmdline = vim.fn.join(vim.v.argv, " ")
+			if string.match(cmdline, "%+Man") or string.match(cmdline, "man:") or string.match(cmdline, "%-c.*Man") then
+				should_run_alpha = false
+			end
+		end
+
 		if should_run_alpha then
 			vim.cmd("Alpha")
 		end
