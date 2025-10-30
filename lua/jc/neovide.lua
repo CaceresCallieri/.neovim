@@ -35,6 +35,7 @@ vim.g.neovide_cursor_smooth_blink = true
 -- Clipboard keymaps
 vim.keymap.set({ "n", "v" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
 vim.keymap.set("i", "<C-S-V>", '<esc>"+pa', { desc = "Paste system clipboard" })
+vim.keymap.set("t", "<C-S-V>", '<C-\\><C-n>"+pi', { desc = "Paste system clipboard" })
 vim.keymap.set("n", "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
 
 -- General keymaps
