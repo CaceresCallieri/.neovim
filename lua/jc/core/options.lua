@@ -20,6 +20,8 @@ opt.number = true -- Show absolute number on current line
 vim.o.cmdheight = 0
 vim.o.linespace = 6
 
+vim.opt.fillchars = { eob = " " } -- Remove "~" symbol for "nonexistent" lines at the bottom of a file
+
 -- Show trailing whitespace as dots
 -- Enable showing whitespace characters
 opt.list = true
