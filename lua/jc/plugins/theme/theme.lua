@@ -6,6 +6,12 @@ return {
 	priority = 1000,
 	config = function()
 		vim.cmd("colorscheme wine_theme")
+
+		-- Set dark gray background for all floating windows
+		local dark_gray = "#2A2A2A"
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = dark_gray })
+		vim.api.nvim_set_hl(0, "FloatBorder", { bg = dark_gray })
+		vim.api.nvim_set_hl(0, "FloatTitle", { bg = dark_gray })
 	end,
 }
 
