@@ -51,42 +51,14 @@ return {
 			},
 
 			pickers = {
-				find_files = {
-					hidden = true,
-					follow = true, -- Keep symlink support for dotfiles
-					cwd = vim.fn.getcwd(), -- Always start from current working directory
-					-- Use fd with safety limits to prevent system freeze
-					find_command = {
-						"fd",
-						"--type",
-						"f",
-						"--follow",
-						"--hidden",
-						"--max-depth",
-						"8", -- Prevent deep directory traversal
-						"--max-results",
-						"10000", -- Cap total results to prevent RAM overflow
-					},
-					-- Additional ignore patterns specific to file finding
-					file_ignore_patterns = {
-						"node_modules",
-						".git",
-						"%.lock",
-						"target/",
-						"build/",
-						"dist/",
-						"%.cache",
-						"%.tmp",
-						"%.log",
-					},
-				},
+				-- File finding is now handled by FFF.nvim for better performance
 				live_grep = {
 					file_ignore_patterns = { "node_modules", ".git", "%.lock" },
 					additional_args = function(_)
 						return {
 							"--hidden",
 							"--follow", -- Keep symlink support
-							"--max-depth=8", -- Match find_files depth limit
+							"--max-depth=8", -- Limit directory traversal depth
 							"--max-count=1000", -- Limit matches per file to prevent hang
 						}
 					end,
@@ -110,17 +82,14 @@ return {
 		local keymap = vim.keymap -- for conciseness
 		local builtin = require("telescope.builtin")
 
-		-- Shortcuts
-		keymap.set("n", "<C-f>", builtin.find_files, { desc = "Telescope find files" })
+		-- Shortcuts (file finding removed - now handled by FFF.nvim)
 		keymap.set("n", "<C-b>", builtin.buffers, { desc = "Telescope buffers" })
 
-		-- Leader keymaps
-		keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+		-- Leader keymaps (file finding removed - now handled by FFF.nvim)
 		keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 		keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 		keymap.set("n", "<leader>fy", builtin.registers, { desc = "Telescope vim registers" })
 		keymap.set("n", "<leader>fm", builtin.marks, { desc = "Telescope find marks" })
-		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 		keymap.set("n", "<leader>fT", builtin.help_tags, { desc = "Telescope help tags" })
 
 		keymap.set("n", "<leader>fc", "", { desc = "Telescope current..." })

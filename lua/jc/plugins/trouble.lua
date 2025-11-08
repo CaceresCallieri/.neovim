@@ -8,5 +8,6 @@ return {
     { "<leader>xq", "<cmd>TroubleToggle quickfix<CR>", desc = "Open trouble quickfix list" },
     { "<leader>xl", "<cmd>TroubleToggle loclist<CR>", desc = "Open trouble location list" },
     { "<leader>xt", "<cmd>TodoTrouble<CR>", desc = "Open todos in trouble" },
+    { "<leader>ft", "<cmd>TodoTrouble<CR>", desc = "Find todos (replaces TodoTelescope)" },
   },
 }
