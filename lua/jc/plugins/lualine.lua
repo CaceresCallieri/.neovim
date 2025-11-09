@@ -34,6 +34,11 @@ return {
 			},
 		}
 
+		-- Custom location component showing line:column/total_lines
+		local function custom_location()
+			return string.format("%d:%d/%d", vim.fn.line("."), vim.fn.col("."), vim.fn.line("$"))
+		end
+
 		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
@@ -44,9 +49,10 @@ return {
 				lualine_a = { "mode" },
 				lualine_b = { "branch" },
 				lualine_c = { { "filename", path = 1 } },
+				lualine_w = {},
 				lualine_x = {},
 				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_z = { custom_location },
 			},
 			inactive_sections = {
 				lualine_a = { { "filename", path = 1 } },
@@ -54,7 +60,7 @@ return {
 				lualine_c = {},
 				lualine_x = {},
 				lualine_y = {},
-				lualine_z = { "location" },
+				lualine_z = { custom_location },
 			},
 			tabline = {},
 			extensions = {},
