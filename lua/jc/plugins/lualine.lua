@@ -39,6 +39,8 @@ return {
 			return string.format("%d:%d/%d", vim.fn.line("."), vim.fn.col("."), vim.fn.line("$"))
 		end
 
+		local modified_file_indicator = "●"
+
 		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
@@ -48,14 +50,14 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch" },
-				lualine_c = { { "filename", path = 1 } },
+				lualine_c = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
 				lualine_w = {},
 				lualine_x = {},
 				lualine_y = { "progress" },
 				lualine_z = { custom_location },
 			},
 			inactive_sections = {
-				lualine_a = { { "filename", path = 1 } },
+				lualine_a = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
 				lualine_b = {},
 				lualine_c = {},
 				lualine_x = {},
