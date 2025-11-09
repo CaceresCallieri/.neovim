@@ -82,7 +82,8 @@ keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", { desc = "Navigate to previous b
 keymap.set("n", "<M-b>", "<C-6>", { noremap = true, silent = true, desc = "Navigate to last visited buffer" })
 
 -- terminal navigation
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
+keymap.set("n", "<C-CR>", "<cmd>terminal<CR>i", { desc = "Open terminal buffer" }) -- Open terminal "buffer" and insert into Terminal mode
+keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true }) -- Escape terminal mode
 
 -- Plugin general keymap, plugins keymaps are in their respective .lua file
 keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
