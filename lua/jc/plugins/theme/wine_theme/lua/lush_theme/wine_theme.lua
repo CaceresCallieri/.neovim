@@ -94,7 +94,7 @@ local theme = lush(function(injected_functions)
 		term_bright_green = hsl("#9DE478"),
 		term_yellow = hsl("#E1D797"),
 		term_bright_yellow = hsl("#857F5C"),
-		term_blue = hsl("#082190"),
+		term_blue = hsl("#6d94e9"),
 		term_bright_blue = hsl("#81A9F6"),
 		term_magenta = hsl("#AE30C2"),
 		term_bright_magenta = hsl("#D86DE9"),
@@ -363,24 +363,6 @@ local theme = lush(function(injected_functions)
 
 	-- stylua: ignore end
 end)
-
--- Set terminal colors for better application support (like Yazi) - macOS Classic Dark
-vim.g.terminal_color_0 = "#E8E4CF"   -- black
-vim.g.terminal_color_1 = "#A8473B"   -- red
-vim.g.terminal_color_2 = "#76BA53"   -- green
-vim.g.terminal_color_3 = "#E1D797"   -- yellow
-vim.g.terminal_color_4 = "#082190"   -- blue
-vim.g.terminal_color_5 = "#AE30C2"   -- magenta
-vim.g.terminal_color_6 = "#3DB6B0"   -- cyan
-vim.g.terminal_color_7 = "#131313"   -- white
-vim.g.terminal_color_8 = "#57564F"   -- bright black
-vim.g.terminal_color_9 = "#DD6F61"   -- bright red
-vim.g.terminal_color_10 = "#9DE478"  -- bright green
-vim.g.terminal_color_11 = "#857F5C"  -- bright yellow
-vim.g.terminal_color_12 = "#81A9F6"  -- bright blue
-vim.g.terminal_color_13 = "#D86DE9"  -- bright magenta
-vim.g.terminal_color_14 = "#5BDFD8"  -- bright cyan
-vim.g.terminal_color_15 = "#3A3A3A"  -- bright white
 
 -- Return our parsed theme for extension or use elsewhere.
 return theme

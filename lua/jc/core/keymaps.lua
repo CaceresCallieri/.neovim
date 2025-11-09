@@ -81,6 +81,9 @@ keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Navigate to next buffe
 keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", { desc = "Navigate to previous buffer in buffer list" })
 keymap.set("n", "<M-b>", "<C-6>", { noremap = true, silent = true, desc = "Navigate to last visited buffer" })
 
+-- terminal navigation
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
+
 -- Plugin general keymap, plugins keymaps are in their respective .lua file
 keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
 keymap.set("n", "<leader>pc", "", { desc = "Color related plugins keymaps" })
