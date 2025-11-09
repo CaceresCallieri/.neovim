@@ -4,15 +4,8 @@ return {
 	config = function()
 		local lualine = require("lualine")
 
-		-- Theme: Kanagawa Wave
 		local colors = {
-			blue = "#80a0ff",
-			cyan = "#7FB4CA",
-			black = "#232323",
 			white = "#C2C2C2",
-			red = "#FF5D62",
-			violet = "#786794",
-			grey = "#303030",
 		}
 
 		-- No background for transparency
