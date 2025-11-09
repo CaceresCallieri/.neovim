@@ -79,7 +79,7 @@ keymap.set(
 keymap.set("n", "<leader>b", "", { desc = "Buffer navigation" })
 keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Navigate to next buffer in buffer list" })
 keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", { desc = "Navigate to previous buffer in buffer list" })
-keymap.set("n", "<M-b>", "<C-6>", { noremap = true, silent = true, desc = "Navigate to last visited buffer" })
+keymap.set("n", "<C-tab>", "<C-6>", { noremap = true, silent = true, desc = "Navigate to last visited buffer" })
 
 -- terminal navigation
 keymap.set("n", "<C-CR>", "<cmd>terminal<CR>i", { desc = "Open terminal buffer" }) -- Open terminal "buffer" and insert into Terminal mode
