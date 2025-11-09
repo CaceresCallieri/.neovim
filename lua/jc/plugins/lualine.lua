@@ -39,6 +39,28 @@ return {
 			return string.format("%d:%d/%d", vim.fn.line("."), vim.fn.col("."), vim.fn.line("$"))
 		end
 
+		-- Approximate token count based on character count
+		-- Uses the heuristic: ~4 characters per token (common for English text)
+		local function approx_token_count()
+			local buf = vim.api.nvim_get_current_buf()
+			local line_count = vim.api.nvim_buf_line_count(buf)
+
+			-- Get total character count efficiently
+			local char_count = vim.api.nvim_buf_get_offset(buf, line_count)
+
+			-- Approximate tokens (4 chars ≈ 1 token)
+			local tokens = math.floor(char_count / 4)
+
+			local token_symbol = " "
+
+			-- Format with 'k' suffix for thousands
+			if tokens >= 1000 then
+				return string.format(token_symbol .. "%.1fk", tokens / 1000)
+			else
+				return token_symbol .. tostring(tokens)
+			end
+		end
+
 		local modified_file_indicator = "●"
 
 		-- configure lualine with modified theme
@@ -52,7 +74,7 @@ return {
 				lualine_b = { "branch" },
 				lualine_c = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
 				lualine_w = {},
-				lualine_x = {},
+				lualine_x = { approx_token_count },
 				lualine_y = { "progress" },
 				lualine_z = { custom_location },
 			},
