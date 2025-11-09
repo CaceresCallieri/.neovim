@@ -74,8 +74,8 @@ return {
 				lualine_b = { "branch" },
 				lualine_c = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
 				lualine_w = {},
-				lualine_x = { approx_token_count },
-				lualine_y = { "progress" },
+				lualine_x = {},
+				lualine_y = { approx_token_count },
 				lualine_z = { custom_location },
 			},
 			inactive_sections = {
