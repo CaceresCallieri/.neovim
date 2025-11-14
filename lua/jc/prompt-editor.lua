@@ -47,7 +47,7 @@ end
 local function get_window_position()
 	local width = math.floor(vim.o.columns * config.width_ratio)
 	local height = math.floor(vim.o.lines * config.height_ratio)
-	local row = vim.o.lines - height - 2  -- Anchor to bottom with margin
+	local row = vim.o.lines - height - 2 -- Anchor to bottom with margin
 	local col = math.floor((vim.o.columns - width) / 2)
 
 	return {
@@ -198,8 +198,14 @@ function M.setup()
 		end,
 	})
 
-	-- Global keybinding to toggle the floating editor
+	-- Global keybindings to toggle the floating editor
 	vim.keymap.set("n", "<leader>ap", M.toggle, {
+		noremap = true,
+		silent = true,
+		desc = "Toggle prompt editor",
+	})
+
+	vim.keymap.set({ "n", "i" }, "<C-S-Space>", M.toggle, {
 		noremap = true,
 		silent = true,
 		desc = "Toggle prompt editor",
