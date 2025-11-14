@@ -85,7 +85,8 @@ local function open_floating_editor()
 
 	-- Restore cursor position and mode
 	local line_count = vim.api.nvim_buf_line_count(buf)
-	local is_empty = (line_count == 1 and vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] == "")
+	-- Check if buffer is truly empty (no lines or one empty line)
+	local is_empty = line_count == 0 or (line_count == 1 and vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] == "")
 
 	if is_empty then
 		-- Empty buffer: start at beginning in insert mode
