@@ -43,11 +43,11 @@ local function get_or_create_buffer()
 	return buf
 end
 
--- Calculate centered position for floating window
-local function get_centered_position()
+-- Calculate window position (bottom-anchored, horizontally centered)
+local function get_window_position()
 	local width = math.floor(vim.o.columns * config.width_ratio)
 	local height = math.floor(vim.o.lines * config.height_ratio)
-	local row = math.floor((vim.o.lines - height) / 2)
+	local row = vim.o.lines - height - 2  -- Anchor to bottom with margin
 	local col = math.floor((vim.o.columns - width) / 2)
 
 	return {
@@ -66,7 +66,7 @@ end
 -- Open the floating prompt editor
 local function open_floating_editor()
 	local buf = get_or_create_buffer()
-	local win_opts = get_centered_position()
+	local win_opts = get_window_position()
 
 	-- Open floating window
 	local win = vim.api.nvim_open_win(buf, true, win_opts)
