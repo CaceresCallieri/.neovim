@@ -6,6 +6,8 @@ return {
 
 		local colors = {
 			white = "#C2C2C2",
+			black = "#1A1A1A",
+			yellow = "#FDD886",
 		}
 
 		-- No background for transparency
@@ -19,6 +21,10 @@ return {
 			insert = { a = { fg = colors.white, bg = nil } },
 			visual = { a = { fg = colors.white, bg = nil } },
 			replace = { a = { fg = colors.white, bg = nil } },
+			terminal = {
+			a = { fg = colors.black, bg = colors.yellow },
+			z = { fg = colors.white, bg = nil },
+		},
 
 			inactive = {
 				a = { fg = colors.white, bg = nil },
