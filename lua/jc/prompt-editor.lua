@@ -29,7 +29,7 @@ local function get_or_create_buffer()
 	local buf = vim.api.nvim_create_buf(false, false) -- listed=false, scratch=false
 
 	-- Set buffer options for editing
-	vim.bo[buf].buftype = "" -- Normal editable buffer
+	vim.bo[buf].buftype = "nofile" -- Non-file buffer (cannot be saved with :w)
 	vim.bo[buf].bufhidden = "hide" -- Hide when not displayed (don't wipe)
 	vim.bo[buf].filetype = "markdown" -- Markdown syntax highlighting
 	vim.bo[buf].swapfile = false
