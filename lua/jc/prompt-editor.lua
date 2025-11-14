@@ -80,12 +80,34 @@ local function open_floating_editor()
 	-- Store window reference
 	state.win = win
 
-	-- Move cursor to end of buffer (after header)
+	-- Restore cursor position and mode
 	local line_count = vim.api.nvim_buf_line_count(buf)
-	vim.api.nvim_win_set_cursor(win, { line_count, 0 })
+	local is_empty = (line_count == 1 and vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] == "")
 
-	-- Enter insert mode
-	vim.cmd("startinsert")
+	if is_empty then
+		-- Empty buffer: start at beginning in insert mode
+		vim.api.nvim_win_set_cursor(win, { 1, 0 })
+		vim.cmd("startinsert")
+	else
+		-- Buffer has content: restore saved position and mode
+		local mark = vim.api.nvim_buf_get_mark(buf, "p")
+
+		if mark and mark[1] > 0 then
+			-- Valid mark exists, restore position
+			vim.api.nvim_win_set_cursor(win, mark)
+		else
+			-- No mark yet (first time with content), go to end
+			local last_line = vim.api.nvim_buf_get_lines(buf, -1, -1, false)[1]
+			local last_col = last_line and #last_line or 0
+			vim.api.nvim_win_set_cursor(win, { line_count, last_col })
+		end
+
+		-- Restore mode
+		if vim.b[buf].prompt_was_insert then
+			vim.cmd("startinsert!")
+		end
+		-- else: stay in normal mode (default)
+	end
 
 	return win
 end
@@ -93,6 +115,14 @@ end
 -- Close the floating prompt editor
 local function close_floating_editor()
 	if state.win and vim.api.nvim_win_is_valid(state.win) then
+		-- Save cursor position as buffer-local mark 'p'
+		local cursor = vim.api.nvim_win_get_cursor(state.win)
+		vim.api.nvim_buf_set_mark(state.buf, "p", cursor[1], cursor[2], {})
+
+		-- Save mode as buffer variable
+		local mode = vim.api.nvim_get_mode().mode
+		vim.b[state.buf].prompt_was_insert = (mode == "i")
+
 		vim.api.nvim_win_close(state.win, false)
 		state.win = nil
 	end
