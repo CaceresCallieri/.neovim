@@ -10,6 +10,9 @@ local state = {
 	buf = nil, -- Buffer ID of prompt buffer
 }
 
+-- Create autocmd group (cleared on reload to prevent duplicates)
+local augroup = vim.api.nvim_create_augroup("PromptEditor", { clear = true })
+
 -- Configuration
 local config = {
 	width_ratio = 0.6, -- 60% of editor width
@@ -220,6 +223,7 @@ end
 function M.setup()
 	-- Set up keybindings when buffer is created
 	vim.api.nvim_create_autocmd("BufEnter", {
+		group = augroup,
 		callback = function(args)
 			-- Only set up keybindings for our prompt buffer
 			if args.buf == state.buf then
