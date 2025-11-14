@@ -89,7 +89,8 @@ local function open_floating_editor()
 	local is_empty = line_count == 0 or (line_count == 1 and vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] == "")
 
 	if is_empty then
-		-- Empty buffer: start at beginning in insert mode
+		-- Empty buffer: clear stale mark and start at beginning in insert mode
+		pcall(vim.api.nvim_buf_del_mark, buf, "p") -- Clear mark if exists
 		vim.api.nvim_win_set_cursor(win, { 1, 0 })
 		vim.cmd("startinsert")
 	else
