@@ -50,7 +50,7 @@ return {
 			-- Approximate tokens (4 chars ≈ 1 token)
 			local tokens = math.floor(char_count / 4)
 
-			local token_symbol = " "
+			local token_symbol = nil
 
 			-- Format with 'k' suffix for thousands
 			if tokens >= 1000 then
