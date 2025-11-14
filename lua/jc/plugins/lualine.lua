@@ -22,9 +22,9 @@ return {
 			visual = { a = { fg = colors.white, bg = nil } },
 			replace = { a = { fg = colors.white, bg = nil } },
 			terminal = {
-			a = { fg = colors.black, bg = colors.yellow },
-			z = { fg = colors.white, bg = nil },
-		},
+				a = { fg = colors.black, bg = colors.yellow },
+				z = { fg = colors.white, bg = nil },
+			},
 
 			inactive = {
 				a = { fg = colors.white, bg = nil },
@@ -67,9 +67,10 @@ return {
 			options = {
 				theme = custom_theme,
 				component_separators = "",
+				section_separators = { left = "", right = "" },
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
 				lualine_b = { "branch" },
 				lualine_c = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
 				lualine_w = {},
