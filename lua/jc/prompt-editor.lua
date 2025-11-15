@@ -66,6 +66,14 @@ local function get_window_position()
 	}
 end
 
+-- Calculate end position of buffer (last line, last column)
+local function get_end_position(buf)
+	local line_count = vim.api.nvim_buf_line_count(buf)
+	local last_line = vim.api.nvim_buf_get_lines(buf, -1, -1, false)[1]
+	local last_col = last_line and #last_line or 0
+	return line_count, last_col
+end
+
 -- Open the floating prompt editor
 local function open_floating_editor()
 	local buf = get_or_create_buffer()
@@ -102,9 +110,8 @@ local function open_floating_editor()
 			vim.api.nvim_win_set_cursor(win, mark)
 		else
 			-- No mark yet (first time with content), go to end
-			local last_line = vim.api.nvim_buf_get_lines(buf, -1, -1, false)[1]
-			local last_col = last_line and #last_line or 0
-			vim.api.nvim_win_set_cursor(win, { line_count, last_col })
+			local end_line, end_col = get_end_position(buf)
+			vim.api.nvim_win_set_cursor(win, { end_line, end_col })
 		end
 
 		-- Restore mode
