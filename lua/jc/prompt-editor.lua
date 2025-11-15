@@ -194,8 +194,10 @@ function M.send_to_terminal()
 	-- Close the floating editor
 	close_floating_editor()
 
-	-- Focus the terminal window
-	vim.api.nvim_set_current_win(term_win)
+	-- Focus the terminal window (check validity in case it closed)
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		vim.api.nvim_set_current_win(term_win)
+	end
 
 	vim.notify("Prompt sent to terminal", vim.log.levels.INFO)
 end
