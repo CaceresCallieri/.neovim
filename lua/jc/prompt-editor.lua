@@ -266,4 +266,29 @@ function M.setup()
 	})
 end
 
+-- Teardown function for testing and cleanup
+function M.teardown()
+	-- Close window if open
+	if state.win and vim.api.nvim_win_is_valid(state.win) then
+		vim.api.nvim_win_close(state.win, true)
+		state.win = nil
+	end
+
+	-- Delete buffer if exists
+	if state.buf and vim.api.nvim_buf_is_valid(state.buf) then
+		vim.api.nvim_buf_delete(state.buf, { force = true })
+		state.buf = nil
+	end
+
+	-- Clear augroup (removes all autocmds)
+	pcall(vim.api.nvim_del_augroup_by_name, "PromptEditor")
+
+	-- Remove user commands
+	pcall(vim.api.nvim_del_user_command, "PromptToggle")
+	pcall(vim.api.nvim_del_user_command, "PromptSend")
+
+	-- Note: Global keymaps cannot be easily removed without IDs
+	-- They will persist until Neovim restart
+end
+
 return M
