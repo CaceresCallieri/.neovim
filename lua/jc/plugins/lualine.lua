@@ -72,7 +72,17 @@ return {
 			sections = {
 				lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
 				lualine_b = { "branch" },
-				lualine_c = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
+				lualine_c = {
+				{
+					"filename",
+					path = 1,
+					symbols = { modified = modified_file_indicator },
+					-- Hide filename for terminal buffers
+					cond = function()
+						return vim.bo.buftype ~= "terminal"
+					end,
+				},
+			},
 				lualine_w = {},
 				lualine_x = {},
 				lualine_y = { approx_token_count },
