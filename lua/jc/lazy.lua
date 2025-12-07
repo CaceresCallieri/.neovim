@@ -16,6 +16,11 @@ require("lazy").setup({
 	{ import = "jc.plugins.lsp" },
 	{ import = "jc.plugins.theme" },
 }, {
+	dev = {
+		path = "~/Dev", -- Where local dev plugins live
+		patterns = {}, -- Use for all plugins with dev = true
+		fallback = false, -- Don't fallback to git
+	},
 	checker = {
 		enabled = true,
 		notify = false,
