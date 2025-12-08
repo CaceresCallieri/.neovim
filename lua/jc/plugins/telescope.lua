@@ -13,7 +13,6 @@ return {
 
 		telescope.setup({
 			defaults = {
-				winblend = 90,
 				path_display = { "smart" },
 				-- Enhanced ignore patterns to skip large directories and temp files
 				file_ignore_patterns = {
@@ -77,6 +76,7 @@ return {
 		})
 
 		telescope.load_extension("fzf")
+		telescope.load_extension("fyler")
 
 		-- set keymaps
 		local keymap = vim.keymap -- for conciseness
