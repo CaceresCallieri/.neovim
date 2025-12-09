@@ -17,5 +17,12 @@ return {
 		{ "<leader>an", "<cmd>AgentsSpawn fresh<cr>", desc = "New Claude" },
 		{ "<leader>ar", "<cmd>AgentsSpawn resume<cr>", desc = "Resume Claude" },
 		{ "<leader>ac", "<cmd>AgentsSpawn continue<cr>", desc = "Continue Claude" },
+
+		-- Agent navigation
+		{ "<C-1>", "<cmd>AgentsFocus 1<cr>", mode = { "n", "t" }, desc = "Focus Claude 1" },
+		{ "<C-2>", "<cmd>AgentsFocus 2<cr>", mode = { "n", "t" }, desc = "Focus Claude 2" },
+		{ "<C-3>", "<cmd>AgentsFocus 3<cr>", mode = { "n", "t" }, desc = "Focus Claude 3" },
+		{ "<C-4>", "<cmd>AgentsFocus 4<cr>", mode = { "n", "t" }, desc = "Focus Claude 4" },
+		{ "<C-5>", "<cmd>AgentsFocus 5<cr>", mode = { "n", "t" }, desc = "Focus Claude 5" },
 	},
 }
