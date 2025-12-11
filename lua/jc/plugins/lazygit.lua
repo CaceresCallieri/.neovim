@@ -15,7 +15,7 @@ return {
 	-- order to load the plugin when the command is run for the first time
 	keys = {
 		{ "<leader>g", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
-		{ "<A-g>", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
+		{ "<A-g>", "<cmd>LazyGit<cr>", desc = "Open lazy git", mode = { "n", "t" } },
 		-- TODO: Edit file in current neovim instance
 	},
 }
