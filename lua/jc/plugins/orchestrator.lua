@@ -12,6 +12,11 @@ return {
 		{ "<C-S-Space>", "<cmd>PromptEditorToggle<cr>", mode = { "n", "i", "t" }, desc = "Toggle prompt editor" },
 		{ "<C-S-CR>", "<cmd>PromptEditorSend<cr>", mode = { "n", "i" }, desc = "Send prompt to Claude" },
 
+		-- Prompt Editor "tabs"
+		{ "<C-Tab>", "<cmd>PromptEditorNext<cr>", mode = { "n", "i" }, desc = "Next prompt tab" },
+		{ "<C-S-n>", "<cmd>PromptEditorNew<cr>", mode = { "n", "i" }, desc = "New prompt tab" },
+		{ "<C-S-x>", "<cmd>PromptEditorDelete<cr>", mode = { "n", "i" }, desc = "Close prompt tab" },
+
 		-- Agent management
 		{ "<leader>aa", "<cmd>AgentsPick<cr>", desc = "AI/Agents picker" },
 		{ "<leader>an", "<cmd>AgentsSpawn fresh<cr>", desc = "New Claude" },
