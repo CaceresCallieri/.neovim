@@ -60,6 +60,11 @@ return {
 			end
 		end
 
+		-- Get the project root folder name (last component of cwd)
+		local function project_root()
+			return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		end
+
 		local modified_file_indicator = "●"
 
 		-- configure lualine with modified theme
@@ -71,7 +76,7 @@ return {
 			},
 			sections = {
 				lualine_a = { { "mode", separator = { left = "", right = "" }, right_padding = 2 } },
-				lualine_b = { "branch" },
+				lualine_b = { project_root, "branch" },
 				lualine_c = {
 				{
 					"filename",
