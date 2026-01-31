@@ -34,5 +34,9 @@ return {
 
 		-- Agent close
 		{ "<C-S-q>", "<cmd>AgentsClose<cr>", mode = { "n", "t" }, desc = "Close Claude instance" },
+
+		-- Edit tracker
+		{ "<leader>ae", "<cmd>AgentsEdits<cr>", desc = "Show Claude edits (quickfix)" },
+		{ "<leader>aj", "<cmd>AgentsJump<cr>", desc = "Jump to last edit" },
 	},
 }
