@@ -13,8 +13,14 @@ return {
 		{
 			"<A-y>",
 			mode = { "n", "v" },
-			"<cmd>Yazi<cr>",
-			desc = "Open yazi at the current file",
+			function()
+				if vim.bo.buftype == "terminal" then
+					vim.cmd("Yazi cwd")
+				else
+					vim.cmd("Yazi")
+				end
+			end,
+			desc = "Open yazi (project root in terminal, current file otherwise)",
 		},
 		{
 			-- Open in the current working directory
