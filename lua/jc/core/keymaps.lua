@@ -94,3 +94,4 @@ keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true }) -- E
 keymap.set("n", "<leader>p", "", { desc = "Plugins keymaps" })
 keymap.set("n", "<leader>pc", "", { desc = "Color related plugins keymaps" })
 keymap.set("n", "<leader>e", "", { desc = "File explorers" })
+keymap.set("n", "<leader>G", "", { desc = "GitHub" })
