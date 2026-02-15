@@ -21,6 +21,9 @@ return {
 	lazy = false, -- neo-tree will lazily load itself
 	opts = {
 		popup_border_style = "rounded", -- Rounded borders for floating window
+		filesystem = {
+			hijack_netrw_behavior = "disabled", -- Don't auto-open on directory buffers (dashboard handles startup)
+		},
 		window = {
 			position = "float", -- Open as floating window instead of sidebar
 			popup = {

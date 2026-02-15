@@ -3,6 +3,18 @@ return {
 	name = "orchestrator.nvim",
 	dev = true,
 	event = "VeryLazy", -- Load lazily, spawning handles instance creation
+	cmd = {
+		"AgentsSpawn",
+		"AgentsPick",
+		"AgentsClose",
+		"AgentsFocus",
+		"AgentsEdits",
+		"AgentsJump",
+		"AgentsPromptJump",
+		"AgentsPlanJump",
+		"PromptEditorToggle",
+		"PromptEditorSend",
+	},
 	config = function()
 		require("orchestrator").setup()
 	end,
@@ -38,5 +50,9 @@ return {
 		-- Edit tracker
 		{ "<leader>ae", "<cmd>AgentsEdits<cr>", desc = "Show Claude edits (quickfix)" },
 		{ "<leader>aj", "<cmd>AgentsJump<cr>", desc = "Jump to last edit" },
+
+		-- Terminal navigation
+		{ "<leader>aP", "<cmd>AgentsPromptJump<cr>", desc = "Jump to last prompt" },
+		{ "<leader>al", "<cmd>AgentsPlanJump<cr>", desc = "Jump to last plan" },
 	},
 }

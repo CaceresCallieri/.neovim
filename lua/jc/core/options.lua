@@ -6,6 +6,9 @@ if vim.fn.argc() == 1 then
 		local stat = vim.loop.fs_stat(arg)
 		if stat and stat.type == "directory" then
 			vim.cmd("cd " .. arg)
+			-- Clear arglist and buffer name so the dashboard shows instead of a blank directory buffer
+			vim.cmd("silent! %argdelete")
+			vim.api.nvim_buf_set_name(0, "")
 		elseif stat and stat.type == "file" then
 			vim.cmd("cd " .. vim.fn.fnamemodify(arg, ":h"))
 		end
