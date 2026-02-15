@@ -3,6 +3,7 @@ return {
 	name = "orchestrator.nvim",
 	dev = true,
 	event = "VeryLazy", -- Load lazily, spawning handles instance creation
+	-- Dashboard integration: command stubs enable lazy-loading when dashboard actions invoke these commands
 	cmd = {
 		"AgentsSpawn",
 		"AgentsPick",

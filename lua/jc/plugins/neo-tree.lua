@@ -22,7 +22,9 @@ return {
 	opts = {
 		popup_border_style = "rounded", -- Rounded borders for floating window
 		filesystem = {
-			hijack_netrw_behavior = "disabled", -- Don't auto-open on directory buffers (dashboard handles startup)
+			-- Dashboard integration: prevents neo-tree from hijacking directory buffers at startup
+			-- Related: options.lua (clears arglist), snacks.lua (dashboard shows instead)
+			hijack_netrw_behavior = "disabled",
 		},
 		window = {
 			position = "float", -- Open as floating window instead of sidebar

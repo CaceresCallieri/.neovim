@@ -6,6 +6,8 @@ return {
 	opts = {
 		picker = {},
 		gh = {},
+		-- Dashboard integration: welcome screen shown on startup (nvim or nvim .)
+		-- Related: options.lua (arglist clearing), neo-tree.lua (hijack disabled), orchestrator.lua (cmd stubs)
 		dashboard = {
 			formats = {
 				label = { "%s", hl = "key" },
@@ -25,7 +27,12 @@ return {
 						key = "f",
 						desc = "Find Files",
 						action = function()
-							require("fff").find_files()
+							local ok, fff = pcall(require, "fff")
+							if ok then
+								fff.find_files()
+							else
+								vim.notify("fff.nvim not available", vim.log.levels.WARN)
+							end
 						end,
 					},
 					{ icon = " ", key = "s", desc = "Restore Session", action = ":SessionRestore" },

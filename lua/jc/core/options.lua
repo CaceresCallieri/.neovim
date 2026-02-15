@@ -1,16 +1,18 @@
 -- Set directory given in nvim argument to current working directory
+-- Dashboard integration: clears arglist/buffer for directory args so snacks dashboard can show
+-- Related: snacks.lua (dashboard config), neo-tree.lua (hijack disabled), orchestrator.lua (cmd stubs)
 if vim.fn.argc() == 1 then
 	local arg = vim.fn.argv(0)
 	-- Ensure arg is a string, not an array
 	if type(arg) == "string" then
 		local stat = vim.loop.fs_stat(arg)
 		if stat and stat.type == "directory" then
-			vim.cmd("cd " .. arg)
+			vim.cmd("cd " .. vim.fn.fnameescape(arg))
 			-- Clear arglist and buffer name so the dashboard shows instead of a blank directory buffer
 			vim.cmd("silent! %argdelete")
 			vim.api.nvim_buf_set_name(0, "")
 		elseif stat and stat.type == "file" then
-			vim.cmd("cd " .. vim.fn.fnamemodify(arg, ":h"))
+			vim.cmd("cd " .. vim.fn.fnameescape(vim.fn.fnamemodify(arg, ":h")))
 		end
 	end
 end
