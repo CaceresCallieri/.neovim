@@ -21,6 +21,7 @@ return {
 					{ key = "C", action = ":AgentsSpawn! continue", hidden = true },
 					{ icon = " ", key = "r", label = "r / R", desc = "Resume Claude", action = ":AgentsSpawn resume" },
 					{ key = "R", action = ":AgentsSpawn! resume", hidden = true },
+						{ icon = " ", key = "y", desc = "Yazi", action = ":Yazi cwd" },
 					{ icon = " ", key = "e", desc = "File Explorer", action = ":Neotree toggle" },
 					{
 						icon = " ",
