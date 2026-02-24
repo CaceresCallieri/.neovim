@@ -1,5 +1,5 @@
 return {
-	dir = "~/Dev/orchestrator.nvim",
+	dir = "~/projects/orchestrator.nvim",
 	name = "orchestrator.nvim",
 	dev = true,
 	event = "VeryLazy", -- Load lazily, spawning handles instance creation
