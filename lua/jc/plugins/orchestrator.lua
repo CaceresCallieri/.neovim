@@ -27,16 +27,16 @@ return {
 		-- NOTE: Tab navigation keymaps (<C-Tab>, <C-S-n>, <C-S-x>) are now buffer-local
 		-- and configured via setup(opts).keymaps.prompt_editor
 
-		-- Agent management
-		{ "<leader>aa", "<cmd>AgentsPick<cr>", desc = "AI/Agents picker" },
-		{ "<leader>an", "<cmd>AgentsSpawn fresh<cr>", desc = "New Claude" },
-		{ "<leader>ar", "<cmd>AgentsSpawn resume<cr>", desc = "Resume Claude" },
-		{ "<leader>ac", "<cmd>AgentsSpawn continue<cr>", desc = "Continue Claude" },
-
 		-- Agent management (⚠ DANGEROUS - runs with --dangerously-skip-permissions)
-		{ "<leader>aN", "<cmd>AgentsSpawn! fresh<cr>", desc = "⚠ New Claude (skip permissions)" },
-		{ "<leader>aR", "<cmd>AgentsSpawn! resume<cr>", desc = "⚠ Resume Claude (skip permissions)" },
-		{ "<leader>aC", "<cmd>AgentsSpawn! continue<cr>", desc = "⚠ Continue Claude (skip permissions)" },
+		{ "<leader>aa", "<cmd>AgentsPick<cr>", desc = "AI/Agents picker" },
+		{ "<leader>an", "<cmd>AgentsSpawn! fresh<cr>", desc = "⚠ New Claude (skip permissions)" },
+		{ "<leader>ar", "<cmd>AgentsSpawn! resume<cr>", desc = "⚠ Resume Claude (skip permissions)" },
+		{ "<leader>ac", "<cmd>AgentsSpawn! continue<cr>", desc = "⚠ Continue Claude (skip permissions)" },
+
+		-- Agent management (normal - with permissions)
+		{ "<leader>aN", "<cmd>AgentsSpawn fresh<cr>", desc = "New Claude" },
+		{ "<leader>aR", "<cmd>AgentsSpawn resume<cr>", desc = "Resume Claude" },
+		{ "<leader>aC", "<cmd>AgentsSpawn continue<cr>", desc = "Continue Claude" },
 
 		-- Agent navigation
 		{ "<C-1>", "<cmd>AgentsFocus 1<cr>", mode = { "n", "t" }, desc = "Focus Claude 1" },
