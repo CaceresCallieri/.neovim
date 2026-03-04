@@ -15,12 +15,9 @@ return {
 			preset = {
 				header = "\n\n\nWelcome back, sir.\n\n\n\n",
 				keys = {
-					{ icon = " ", key = "n", label = "n / N", desc = "New Claude", action = ":AgentsSpawn fresh" },
-					{ key = "N", action = ":AgentsSpawn! fresh", hidden = true },
-					{ icon = " ", key = "c", label = "c / C", desc = "Continue Claude", action = ":AgentsSpawn continue" },
-					{ key = "C", action = ":AgentsSpawn! continue", hidden = true },
-					{ icon = " ", key = "r", label = "r / R", desc = "Resume Claude", action = ":AgentsSpawn resume" },
-					{ key = "R", action = ":AgentsSpawn! resume", hidden = true },
+					{ icon = " ", key = "n", desc = "New Claude", action = ":AgentsSpawn! fresh" },
+					{ icon = " ", key = "c", desc = "Continue Claude", action = ":AgentsSpawn! continue" },
+					{ icon = " ", key = "r", desc = "Resume Claude", action = ":AgentsSpawn! resume" },
 						{ icon = " ", key = "y", desc = "Yazi", action = ":Yazi cwd" },
 					{ icon = " ", key = "e", desc = "File Explorer", action = ":Neotree toggle" },
 					{
