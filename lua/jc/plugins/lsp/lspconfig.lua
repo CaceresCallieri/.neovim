@@ -68,18 +68,6 @@ return {
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- Configure diagnostic signs in the sign column (gutter)
-		vim.diagnostic.config({
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = " ",
-					[vim.diagnostic.severity.WARN] = " ",
-					[vim.diagnostic.severity.HINT] = "󰠠 ",
-					[vim.diagnostic.severity.INFO] = " ",
-				},
-			},
-		})
-
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
@@ -114,10 +102,6 @@ return {
 			lua_ls = {
 				settings = {
 					Lua = {
-						-- make the language server recognize "vim" global
-						diagnostics = {
-							globals = { "vim" },
-						},
 						completion = {
 							callSnippet = "Replace",
 						},

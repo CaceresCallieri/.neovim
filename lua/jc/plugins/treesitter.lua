@@ -5,11 +5,12 @@ return {
 	dependencies = {
 		{
 			"windwp/nvim-ts-autotag",
+			-- nvim-ts-autotag reads its config from opts.opts (its own plugin opts table),
+			-- so the outer opts is for lazy.nvim and the inner opts is for the plugin itself.
 			opts = {
 				opts = {
 					enable_close = true,
 					enable_rename = true,
-					enable_close_on_slash = false,
 				},
 			},
 		},
@@ -66,7 +67,6 @@ return {
 				"vimdoc",
 				"c",
 				"regex",
-				-- "latex",
 			},
 			incremental_selection = {
 				enable = true,
