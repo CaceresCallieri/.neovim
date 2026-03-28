@@ -74,6 +74,8 @@ opt.scrolloff = 15
 
 -- Disable scrolloff in terminal buffers to prevent cursor-position fights with TUI apps
 vim.api.nvim_create_autocmd("TermEnter", {
+	group = vim.api.nvim_create_augroup("TerminalScrolloff", { clear = true }),
+	pattern = "*",
 	callback = function()
 		vim.opt_local.scrolloff = 0
 	end,
