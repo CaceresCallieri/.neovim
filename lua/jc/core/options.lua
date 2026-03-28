@@ -72,6 +72,13 @@ opt.swapfile = false
 -- Center cursor by x amount of lines
 opt.scrolloff = 15
 
+-- Disable scrolloff in terminal buffers to prevent cursor-position fights with TUI apps
+vim.api.nvim_create_autocmd("TermEnter", {
+	callback = function()
+		vim.opt_local.scrolloff = 0
+	end,
+})
+
 opt.conceallevel = 1 -- Required for obsidian.nvim
 
 -- Prevent "o" and "O" from opening a new line commented
