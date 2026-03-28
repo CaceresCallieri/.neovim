@@ -46,6 +46,7 @@ return {
 		require("nvim-treesitter").setup()
 
 		-- Install any missing parsers from the ensure_installed list
+		-- vim.list_contains requires Neovim 0.10+
 		local installed = require("nvim-treesitter").get_installed()
 		local missing = vim.tbl_filter(function(parser)
 			return not vim.list_contains(installed, parser)
@@ -60,6 +61,7 @@ return {
 			group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true }),
 			callback = function()
 				pcall(vim.treesitter.start)
+				-- Only set treesitter indent if no other indentexpr is active
 				if vim.bo.indentexpr == "" then
 					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 				end
@@ -68,27 +70,21 @@ return {
 
 		-- Incremental node selection via treesitter
 		-- Starts visual selection on the node under cursor, then expands/shrinks
-		local function get_node_at_cursor()
-			local node = vim.treesitter.get_node()
-			if not node then
-				return nil
-			end
-			return node
-		end
 
 		vim.keymap.set("n", "<C-space>", function()
-			local node = get_node_at_cursor()
+			local node = vim.treesitter.get_node()
 			if not node then
 				return
 			end
 			local sr, sc, er, ec = node:range()
 			vim.api.nvim_win_set_cursor(0, { sr + 1, sc })
 			vim.cmd("normal! v")
+			-- ec is exclusive (past-end), so subtract 1 for inclusive visual end
 			vim.api.nvim_win_set_cursor(0, { er + 1, ec > 0 and ec - 1 or 0 })
 		end, { desc = "Init treesitter selection" })
 
 		vim.keymap.set("x", "<C-space>", function()
-			local node = get_node_at_cursor()
+			local node = vim.treesitter.get_node()
 			if not node then
 				return
 			end
@@ -97,27 +93,32 @@ return {
 				return
 			end
 			local sr, sc, er, ec = parent:range()
-			vim.cmd("normal! \27") -- exit visual to reset
+			-- Exit and re-enter visual to reanchor selection at new node start
+			vim.cmd("normal! <Esc>")
 			vim.api.nvim_win_set_cursor(0, { sr + 1, sc })
 			vim.cmd("normal! v")
 			vim.api.nvim_win_set_cursor(0, { er + 1, ec > 0 and ec - 1 or 0 })
 		end, { desc = "Increment treesitter selection" })
 
 		vim.keymap.set("x", "<bs>", function()
-			local node = get_node_at_cursor()
+			local node = vim.treesitter.get_node()
 			if not node then
 				return
 			end
-			-- Find the smallest child that covers the cursor position
+			-- Find the smallest named descendant covering the cursor position
 			local cursor = vim.api.nvim_win_get_cursor(0)
 			local row, col = cursor[1] - 1, cursor[2]
 			local child = node:named_descendant_for_range(row, col, row, col)
 			if child and child ~= node then
 				local sr, sc, er, ec = child:range()
-				vim.cmd("normal! \27")
+				-- Exit and re-enter visual to reanchor selection at new node start
+				vim.cmd("normal! <Esc>")
 				vim.api.nvim_win_set_cursor(0, { sr + 1, sc })
 				vim.cmd("normal! v")
 				vim.api.nvim_win_set_cursor(0, { er + 1, ec > 0 and ec - 1 or 0 })
+			else
+				-- No smaller child found — exit visual mode rather than silently no-op
+				vim.cmd("normal! <Esc>")
 			end
 		end, { desc = "Decrement treesitter selection" })
 	end,
