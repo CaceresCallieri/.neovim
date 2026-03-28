@@ -16,7 +16,7 @@ return {
 		map("n", "gz", "<Plug>(nvim-surround-normal)", { desc = "Surround add" })
 		map("n", "gZ", "<Plug>(nvim-surround-normal-cur)", { desc = "Surround add (current line)" })
 		map("n", "gzgz", "<Plug>(nvim-surround-normal-line)", { desc = "Surround add (new lines)" })
-		map("n", "gZgZ", "<Plug>(nvim-surround-normal-cur-line)", { desc = "Surround add cur (new lines)" })
+		map("n", "gZgZ", "<Plug>(nvim-surround-normal-cur-line)", { desc = "Surround add (current line, new lines)" })
 		map("x", "gz", "<Plug>(nvim-surround-visual)", { desc = "Surround visual" })
 		map("x", "gZ", "<Plug>(nvim-surround-visual-line)", { desc = "Surround visual line" })
 		map("n", "gzd", "<Plug>(nvim-surround-delete)", { desc = "Surround delete" })

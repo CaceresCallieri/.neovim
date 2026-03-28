@@ -23,7 +23,7 @@ return {
 
 			get_element_icon = function(element)
 				if element.filetype and element.filetype == "neo-tree" then
-					return "" -- Change this to your preferred icon
+					return ""
 				end
 			end,
 		},
