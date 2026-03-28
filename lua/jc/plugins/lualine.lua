@@ -8,6 +8,7 @@ return {
 			white = "#C2C2C2",
 			black = "#1A1A1A",
 			yellow = "#FDD886",
+			matte_charcoal = "#1f1f1f",
 		}
 
 		-- No background for transparency
@@ -22,7 +23,7 @@ return {
 			visual = { a = { fg = colors.white, bg = nil } },
 			replace = { a = { fg = colors.white, bg = nil } },
 			terminal = {
-				a = { fg = colors.black, bg = colors.yellow },
+				a = { fg = colors.white, bg = colors.matte_charcoal },
 				z = { fg = colors.white, bg = nil },
 			},
 
