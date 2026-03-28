@@ -15,15 +15,14 @@ return {
 			-- TODO: Indicate that a tab has multiple buffers open
 
 			name_formatter = function(buf)
-				if buf.name and buf.name:match("NvimTree") then
+				if buf.name and buf.name:match("neo%-tree") then
 					return " File Tree"
 				end
 				return buf.name
 			end,
 
 			get_element_icon = function(element)
-				-- Check if the buffer has a name and if it's NvimTree, set a custom icon
-				if element.filetype and element.filetype:match("NvimTree") then
+				if element.filetype and element.filetype == "neo-tree" then
 					return "" -- Change this to your preferred icon
 				end
 			end,

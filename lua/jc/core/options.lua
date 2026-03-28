@@ -5,7 +5,7 @@ if vim.fn.argc() == 1 then
 	local arg = vim.fn.argv(0)
 	-- Ensure arg is a string, not an array
 	if type(arg) == "string" then
-		local stat = vim.loop.fs_stat(arg)
+		local stat = vim.uv.fs_stat(arg)
 		if stat and stat.type == "directory" then
 			vim.cmd("cd " .. vim.fn.fnameescape(arg))
 			-- Clear arglist and buffer name so the dashboard shows instead of a blank directory buffer

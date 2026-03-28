@@ -51,13 +51,11 @@ return {
 			-- Approximate tokens (4 chars ≈ 1 token)
 			local tokens = math.floor(char_count / 4)
 
-			local token_symbol = nil
-
 			-- Format with 'k' suffix for thousands
 			if tokens >= 1000 then
-				return string.format(token_symbol .. "%.1fk", tokens / 1000)
+				return string.format("%.1fk", tokens / 1000)
 			else
-				return token_symbol .. tostring(tokens)
+				return tostring(tokens)
 			end
 		end
 

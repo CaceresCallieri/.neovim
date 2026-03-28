@@ -5,7 +5,7 @@ if vim.g.neovide then
 end
 
 -- For TMUX, allows tmux-windows-name plugin to remane tmux window when opening and closing neovim instances
-local uv = vim.loop
+local uv = vim.uv
 
 vim.api.nvim_create_autocmd({ "VimEnter", "VimLeave" }, {
 	callback = function()
