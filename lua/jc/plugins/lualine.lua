@@ -34,9 +34,12 @@ return {
 			},
 		}
 
-		-- Custom location component showing line:column/total_lines
+		-- Custom location component showing line:column/total_lines and file percentage
 		local function custom_location()
-			return string.format("%d:%d/%d", vim.fn.line("."), vim.fn.col("."), vim.fn.line("$"))
+			local current_line = vim.fn.line(".")
+			local total_lines = vim.fn.line("$")
+			local pct = math.floor(current_line / total_lines * 100)
+			return string.format("%d:%d/%d %d%%%%", current_line, vim.fn.col("."), total_lines, pct)
 		end
 
 		-- Approximate token count based on character count
