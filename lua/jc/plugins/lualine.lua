@@ -67,6 +67,10 @@ return {
 			return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 		end
 
+		local is_not_terminal = function()
+			return vim.bo.buftype ~= "terminal"
+		end
+
 		local modified_file_indicator = "●"
 
 		-- configure lualine with modified theme
@@ -84,15 +88,12 @@ return {
 						"filename",
 						path = 1,
 						symbols = { modified = modified_file_indicator },
-						-- Hide filename for terminal buffers
-						cond = function()
-							return vim.bo.buftype ~= "terminal"
-						end,
+						cond = is_not_terminal,
 					},
 				},
 				lualine_x = {},
-				lualine_y = { approx_token_count },
-				lualine_z = { custom_location },
+				lualine_y = { { approx_token_count, cond = is_not_terminal } },
+				lualine_z = { { custom_location, cond = is_not_terminal } },
 			},
 			inactive_sections = {
 				lualine_a = { { "filename", path = 1, symbols = { modified = modified_file_indicator } } },
