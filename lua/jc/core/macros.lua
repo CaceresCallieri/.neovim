@@ -39,6 +39,15 @@ keymap.set("v", "<leader>mc", consoleLogMacro, { desc = "console.log selected va
 
 keymap.set("n", "<leader>mc", "_wviw" .. consoleLogMacro, { desc = "console.log variable from current line" })
 
+-- Copy path macros
+keymap.set("n", "<leader>c", "", { desc = "Copy path" })
+
+keymap.set("n", "<leader>cc", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path)
+end, { desc = "Copy absolute file path to clipboard" })
+
 -- Obsidian macros
 keymap.set("n", "<leader>o", "", { desc = "Obsidian macros" })
 
@@ -49,3 +58,18 @@ keymap.set("n", "<leader>oc", "0ci[x<esc>", { desc = "Check todo box" })
 keymap.set("n", "<leader>oC", "0ci[x<esc>ddmaG{p'a", { desc = "Check todo box and move the line to the checked list" })
 
 keymap.set("i", "<A-t>", "- [ ] ", { desc = "Create todo inline from insert mode" })
+
+-- Annotation macros (for design doc [JC] and [DISCUSS] blockquotes)
+-- [JC] annotations — source of truth
+keymap.set("n", "<A-n>", 'o> **[JC]:** <esc>a', { desc = "Insert [JC] annotation below" })
+keymap.set("i", "<A-n>", "> **[JC]:** ", { desc = "Insert [JC] annotation inline" })
+keymap.set("v", "<A-n>", "c> **[JC]:** <esc>pa", { desc = "Wrap selection in [JC] annotation" })
+
+-- [DISCUSS] annotations — open discussion topics
+keymap.set("n", "<A-N>", 'o> **[DISCUSS]:** <esc>a', { desc = "Insert [DISCUSS] annotation below" })
+keymap.set("i", "<A-N>", "> **[DISCUSS]:** ", { desc = "Insert [DISCUSS] annotation inline" })
+keymap.set("v", "<A-N>", "c> **[DISCUSS]:** <esc>pa", { desc = "Wrap selection in [DISCUSS] annotation" })
+
+-- Leader-key aliases for which-key discoverability
+keymap.set("n", "<leader>oa", 'o> **[JC]:** <esc>a', { desc = "Insert [JC] annotation" })
+keymap.set("n", "<leader>od", 'o> **[DISCUSS]:** <esc>a', { desc = "Insert [DISCUSS] annotation" })
