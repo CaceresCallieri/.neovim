@@ -43,5 +43,11 @@ return {
 		})
 
 		vim.keymap.set("n", "<leader>pn", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss current notifications" })
+
+		-- Muted cmdline popup accent (border, icon, title) instead of default blue
+		local cmdline_accent = "#C2C2C2"
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = cmdline_accent })
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupTitle", { fg = cmdline_accent })
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { fg = cmdline_accent })
 	end,
 }
