@@ -10,6 +10,37 @@ local skip_directories = {
 	["vendor"] = true,
 }
 
+-- Find the source of the neo-tree window in the current tab, or nil if closed.
+-- vim.b[buf].neo_tree_source is set by neo-tree itself on each tree buffer.
+local function find_neotree_source()
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if vim.bo[buf].filetype == "neo-tree" then
+			return vim.b[buf].neo_tree_source
+		end
+	end
+	return nil
+end
+
+-- Symmetric smart-toggle: pressing the key for the *active* source closes the
+-- sidebar; pressing it for any other state (closed or other source) shows the
+-- target source. Lets a single key act as both "open this view" and "close it."
+--
+-- When swapping sources, close the existing tree first. Otherwise neo-tree
+-- opens the target as a *new* window while the old one lingers briefly,
+-- and edgy reserves slot space for both — leaving a phantom gap in the layout.
+local function smart_toggle(target_source)
+	return function()
+		local current = find_neotree_source()
+		if current ~= nil then
+			vim.cmd("Neotree close")
+		end
+		if current ~= target_source then
+			vim.cmd("Neotree show " .. target_source)
+		end
+	end
+end
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -19,22 +50,54 @@ return {
 		"nvim-tree/nvim-web-devicons", -- optional, but recommended
 	},
 	lazy = false, -- neo-tree will lazily load itself
+	config = function(_, opts)
+		require("neo-tree").setup(opts)
+
+		-- Real-time git_status refresh: fire neo-tree's git_event whenever
+		-- repo state likely changed. CursorHold covers the "agent edits while
+		-- I'm idle in nvim" case (fires after &updatetime ms of inactivity).
+		local events = require("neo-tree.events")
+		local refresh_group = vim.api.nvim_create_augroup("NeoTreeGitRefresh", { clear = true })
+		vim.api.nvim_create_autocmd({
+			"BufWritePost",   -- nvim-side save
+			"FocusGained",    -- returning from external window
+			"TermLeave",      -- leaving an embedded terminal (agent finished a turn)
+			"CursorHold",     -- idle tick for ambient updates
+		}, {
+			group = refresh_group,
+			callback = function()
+				events.fire_event(events.GIT_EVENT)
+			end,
+		})
+
+		-- Auto-open the filesystem sidebar at startup. `<C-g>` swaps to
+		-- git_status on demand. Predictable default beats clever heuristics —
+		-- the user always knows what they'll see when they open nvim.
+		local startup_group = vim.api.nvim_create_augroup("NeoTreeStartup", { clear = true })
+		vim.api.nvim_create_autocmd("VimEnter", {
+			group = startup_group,
+			once = true,
+			callback = function()
+				-- Defer one tick so edgy and the dashboard finish their own setup first
+				vim.schedule(function()
+					-- `show` opens without stealing focus from the dashboard / current window
+					vim.cmd("Neotree show filesystem")
+				end)
+			end,
+		})
+	end,
 	opts = {
 		popup_border_style = "rounded", -- Rounded borders for floating window
 		filesystem = {
 			-- Dashboard integration: prevents neo-tree from hijacking directory buffers at startup
 			-- Related: options.lua (clears arglist), snacks.lua (dashboard shows instead)
 			hijack_netrw_behavior = "disabled",
+			-- Detect external file create/delete (e.g. agent writing files via terminal)
+			use_libuv_file_watcher = true,
 		},
 		window = {
-			position = "float", -- Open as floating window instead of sidebar
-			popup = {
-				size = {
-					height = "95%", -- Increased from default 80%
-					width = "70%", -- Increased from default 50%
-				},
-				position = "50%", -- Keep window centered
-			},
+			position = "right", -- Right-side sidebar, slot reserved by edgy.nvim
+			width = 32, -- Initial width; edgy enforces it as the pinned size
 			mappings = {
 				["z"] = "expand_all_nodes_filtered", -- Expand all folders except skip list
 				["Z"] = "close_all_nodes", -- Collapse all folders
@@ -107,8 +170,13 @@ return {
 	keys = {
 		{
 			"<C-e>",
-			"<cmd>Neotree toggle<cr>",
-			desc = "Toggle Neo-tree floating window",
+			smart_toggle("filesystem"),
+			desc = "File tree (close if active, show otherwise)",
+		},
+		{
+			"<C-g>",
+			smart_toggle("git_status"),
+			desc = "Git status tree (close if active, show otherwise)",
 		},
 	},
 }
