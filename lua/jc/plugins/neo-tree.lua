@@ -65,6 +65,8 @@ end
 -- `toggle_visibility` can restore whichever view the user last had open,
 -- instead of always reverting to filesystem. Defaults to filesystem on first
 -- run (matches the VimEnter startup default).
+-- Invariant: when the sidebar is open, find_neotree_source() is the
+-- authoritative source; last_source is only consulted on reopen.
 local last_source = "filesystem"
 
 -- Cycle between filesystem and git_status. Never closes the sidebar —
@@ -77,12 +79,10 @@ local last_source = "filesystem"
 -- and edgy reserves slot space for both — leaving a phantom gap in the layout.
 local function cycle_source()
 	local current = find_neotree_source()
-	local next_source
+	-- Default to filesystem; overridden to git_status when cycling away from it.
+	local next_source = "filesystem"
 	if current == "filesystem" then
 		next_source = "git_status"
-	else
-		-- closed OR currently git_status → go to filesystem
-		next_source = "filesystem"
 	end
 	if current then
 		vim.cmd("Neotree close")
@@ -160,7 +160,7 @@ return {
 			end,
 		})
 
-		-- Auto-open the filesystem sidebar at startup. `<C-g>` swaps to
+		-- Auto-open the filesystem sidebar at startup. <C-e> cycles to
 		-- git_status on demand. Predictable default beats clever heuristics —
 		-- the user always knows what they'll see when they open nvim.
 		local startup_group = vim.api.nvim_create_augroup("NeoTreeStartup", { clear = true })
