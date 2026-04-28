@@ -135,7 +135,7 @@ local theme = lush(function(injected_functions)
 		-- TermCursor     { }, -- Cursor in a focused terminal
 		-- TermCursorNC   { }, -- Cursor in an unfocused terminal
 		-- ErrorMsg       { }, -- Error messages on the command line
-		-- VertSplit      { }, -- Column separating vertically split windows
+		VertSplit      { fg = colors.bg_primary, bg = "NONE" }, -- Column separating vertically split windows (invisible — matches bg)
 		-- Folded         { }, -- Line used for closed folds
 		-- FoldColumn     { }, -- 'foldcolumn'
 		-- SignColumn     { }, -- Column where |signs| are displayed
@@ -194,7 +194,7 @@ local theme = lush(function(injected_functions)
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		-- WarningMsg     { }, -- Warning messages
 		-- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-		-- Winseparator   { }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+		WinSeparator   { fg = colors.bg_primary, bg = "NONE" }, -- Separator between window splits — invisible to keep the layout clean.
 		-- WildMenu       { }, -- Current match in 'wildmenu' completion
 		-- WinBar         { }, -- Window bar of current window
 		-- WinBarNC       { }, -- Window bar of not-current windows

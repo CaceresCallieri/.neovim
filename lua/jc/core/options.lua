@@ -25,7 +25,21 @@ opt.number = true -- Show absolute number on current line
 vim.o.cmdheight = 0
 vim.o.linespace = 6
 
-vim.opt.fillchars = { eob = " " } -- Remove "~" symbol for "nonexistent" lines at the bottom of a file
+-- eob: remove "~" markers at end-of-buffer.
+-- vert/vertright/horiz/horizup/horizdown/verthoriz: use spaces for split borders so
+-- no character is drawn between windows. Combined with WinSeparator's fg=bg, this
+-- yields a fully transparent seam — important when the terminal background is
+-- transparent and a colored character would otherwise show against the wallpaper.
+vim.opt.fillchars = {
+	eob = " ",
+	vert = " ",
+	vertleft = " ",
+	vertright = " ",
+	verthoriz = " ",
+	horiz = " ",
+	horizup = " ",
+	horizdown = " ",
+}
 
 -- Show trailing whitespace as dots
 -- Enable showing whitespace characters
