@@ -32,7 +32,7 @@ end
 local function smart_toggle(target_source)
 	return function()
 		local current = find_neotree_source()
-		if current ~= nil then
+		if current then
 			vim.cmd("Neotree close")
 		end
 		if current ~= target_source then
@@ -66,6 +66,12 @@ return {
 		}, {
 			group = refresh_group,
 			callback = function()
+				-- Skip refresh when cursor is inside the neo-tree buffer itself:
+				-- redrawing while interacting with the tree can jump the cursor or
+				-- interrupt type-ahead in the filter prompt.
+				if vim.bo.filetype == "neo-tree" then
+					return
+				end
 				events.fire_event(events.GIT_EVENT)
 			end,
 		})
@@ -80,6 +86,12 @@ return {
 			callback = function()
 				-- Defer one tick so edgy and the dashboard finish their own setup first
 				vim.schedule(function()
+					-- Only open the sidebar when nvim launched without a file argument.
+					-- When a file is passed (e.g. `nvim foo.lua`), the sidebar opening
+					-- alongside it is intrusive — the user's intent is to edit that file.
+					if vim.fn.argc() > 0 then
+						return
+					end
 					-- `show` opens without stealing focus from the dashboard / current window
 					vim.cmd("Neotree show filesystem")
 				end)
@@ -87,7 +99,6 @@ return {
 		})
 	end,
 	opts = {
-		popup_border_style = "rounded", -- Rounded borders for floating window
 		filesystem = {
 			-- Dashboard integration: prevents neo-tree from hijacking directory buffers at startup
 			-- Related: options.lua (clears arglist), snacks.lua (dashboard shows instead)

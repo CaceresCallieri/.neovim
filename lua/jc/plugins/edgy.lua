@@ -20,7 +20,7 @@ return {
 				ft = "neo-tree",
 				size = { width = 32 },
 				-- Both filesystem and git_status sources match ft=neo-tree,
-				-- so they automatically share this slot. <leader>at swaps between them.
+				-- so they automatically share this slot. <C-e> / <C-g> swap between them.
 			},
 		},
 		animate = {
