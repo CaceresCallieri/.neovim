@@ -21,13 +21,12 @@ local MAX_EXPAND_DEPTH = 7
 -- (reopen / source swap), so behavior stays consistent regardless of how
 -- the tree window came into existence.
 --
--- Implementation note: neo-tree's `node:expand()` only marks a node as
--- expanded; children are fetched on the next render. So a single recursive
--- pass can only expand nodes whose children are already loaded — at startup,
--- that's typically depth 0 and 1 only. We fire multiple passes at increasing
--- delays so each pass picks up the children loaded by the previous pass,
--- cascading the expansion down to MAX_EXPAND_DEPTH over ~1 second. Each pass
--- is idempotent (already-expanded nodes are skipped), so re-runs are cheap.
+-- Implementation note: expand_all_nodes_filtered runs inside async.run and
+-- uses neo-tree's filesystem prefetcher to synchronously load each directory
+-- before recursing — a single pass reliably populates the full tree up to
+-- MAX_EXPAND_DEPTH. The 50ms defer here lets the tree window finish
+-- registering its state before we touch it. Re-runs are idempotent:
+-- already-expanded nodes are skipped, so BufWinEnter re-triggers are cheap.
 local function trigger_auto_expand(source_name)
 	-- Single deferred call. The expand_all_nodes_filtered command runs its
 	-- recursion inside async.run and uses neo-tree's filesystem prefetcher to
@@ -132,7 +131,7 @@ return {
 				if not source then
 					return
 				end
-				-- trigger_auto_expand handles its own cascading delays
+				-- trigger_auto_expand handles its own timing via a 50ms defer
 				trigger_auto_expand(source)
 			end,
 		})
@@ -248,9 +247,9 @@ return {
 				event = "neo_tree_window_after_open",
 				handler = function(args)
 					-- Use the source name from the event args so this works for any
-					-- source (filesystem, git_status, future ones). The cascading
+					-- source (filesystem, git_status, future ones). The deferred
 					-- helper handles its own timing — no outer defer needed.
-					local source_name = (args and args.source_name) or "filesystem"
+					local source_name = (args and args.source) or "filesystem"
 					trigger_auto_expand(source_name)
 				end,
 			},
