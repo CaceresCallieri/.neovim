@@ -61,22 +61,46 @@ local function find_neotree_source()
 	return nil
 end
 
--- Symmetric smart-toggle: pressing the key for the *active* source closes the
--- sidebar; pressing it for any other state (closed or other source) shows the
--- target source. Lets a single key act as both "open this view" and "close it."
+-- Remembered source for show/hide. Updated on every cycle and on hide so that
+-- `toggle_visibility` can restore whichever view the user last had open,
+-- instead of always reverting to filesystem. Defaults to filesystem on first
+-- run (matches the VimEnter startup default).
+local last_source = "filesystem"
+
+-- Cycle between filesystem and git_status. Never closes the sidebar —
+-- pressing the active source's key rotates to the next view rather than
+-- dismissing. From the closed state we open filesystem, the predictable
+-- primary view.
 --
 -- When swapping sources, close the existing tree first. Otherwise neo-tree
 -- opens the target as a *new* window while the old one lingers briefly,
 -- and edgy reserves slot space for both — leaving a phantom gap in the layout.
-local function smart_toggle(target_source)
-	return function()
-		local current = find_neotree_source()
-		if current then
-			vim.cmd("Neotree close")
-		end
-		if current ~= target_source then
-			vim.cmd("Neotree show " .. target_source)
-		end
+local function cycle_source()
+	local current = find_neotree_source()
+	local next_source
+	if current == "filesystem" then
+		next_source = "git_status"
+	else
+		-- closed OR currently git_status → go to filesystem
+		next_source = "filesystem"
+	end
+	if current then
+		vim.cmd("Neotree close")
+	end
+	vim.cmd("Neotree show " .. next_source)
+	last_source = next_source
+end
+
+-- Show/hide the sidebar entirely, restoring whichever source was last visible.
+-- Lets the user dismiss the sidebar without losing context — re-pressing
+-- brings back exactly what they had, not a forced filesystem reset.
+local function toggle_visibility()
+	local current = find_neotree_source()
+	if current then
+		last_source = current
+		vim.cmd("Neotree close")
+	else
+		vim.cmd("Neotree show " .. last_source)
 	end
 end
 
@@ -258,13 +282,13 @@ return {
 	keys = {
 		{
 			"<C-e>",
-			smart_toggle("filesystem"),
-			desc = "File tree (close if active, show otherwise)",
+			cycle_source,
+			desc = "Cycle sidebar source (filesystem ↔ git_status)",
 		},
 		{
-			"<C-g>",
-			smart_toggle("git_status"),
-			desc = "Git status tree (close if active, show otherwise)",
+			"<C-S-e>",
+			toggle_visibility,
+			desc = "Show/hide sidebar (preserves last source)",
 		},
 	},
 }
