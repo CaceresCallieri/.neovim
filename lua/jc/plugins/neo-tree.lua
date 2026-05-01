@@ -183,6 +183,13 @@ return {
 		})
 	end,
 	opts = {
+		-- Allow neo-tree to open files in terminal windows (replacing the terminal
+		-- buffer in that slot). Default is {"terminal", "Trouble", "qf", "Outline"};
+		-- we drop "terminal" so files always replace the main pane instead of
+		-- spawning a third split next to the Claude terminal. The terminal buffer
+		-- stays alive — it's just hidden — and remains reachable via orchestrator's
+		-- <C-1>..<C-5> focus keybinds or `:b#`.
+		open_files_do_not_replace_types = { "Trouble", "qf", "Outline" },
 		filesystem = {
 			-- Dashboard integration: prevents neo-tree from hijacking directory buffers at startup
 			-- Related: options.lua (clears arglist), snacks.lua (dashboard shows instead)
