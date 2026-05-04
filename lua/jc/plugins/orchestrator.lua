@@ -13,11 +13,15 @@ return {
 		"AgentsJump",
 		"AgentsPromptJump",
 		"AgentsPlanJump",
+		"AgentsRefresh",
 		"PromptEditorToggle",
 		"PromptEditorSend",
 	},
 	config = function()
 		require("orchestrator").setup()
+		-- Session persistence (Claude agents across nvim restarts) is wired from
+		-- ~/.dotfiles/.config/nvim/lua/jc/plugins/auto-session.lua via auto-session's
+		-- post_save_cmds / post_restore_cmds — see that file for the integration.
 	end,
 	keys = {
 		-- Prompt editor (global keymaps - buffer-local keymaps handled by plugin defaults)
