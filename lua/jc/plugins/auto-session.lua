@@ -3,10 +3,11 @@ return {
 	config = function()
 		-- NOTE: `terminal` is intentionally excluded from sessionoptions.
 		-- orchestrator.nvim owns the lifecycle of Claude terminals: it serializes
-		-- live agents on SessionSavePre and respawns them via `claude --resume <id>`
-		-- on SessionRestorePost. If `terminal` were included, Vim would resurrect
-		-- dead terminal buffers (no underlying process), colliding with orchestrator's
-		-- restore and leaving the user with empty zombie panes.
+		-- live agents from auto-session's post_save_cmds hook and respawns them
+		-- via `claude --resume <id>` from post_restore_cmds (see callbacks below).
+		-- If `terminal` were included, Vim would resurrect dead terminal buffers
+		-- (no underlying process), colliding with orchestrator's restore and
+		-- leaving the user with empty zombie panes.
 		vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
 
 		local auto_session = require("auto-session")
