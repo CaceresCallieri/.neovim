@@ -12,7 +12,7 @@ return {
 
 		local auto_session = require("auto-session")
 		auto_session.setup({
-			auto_restore = false, -- Restore is dashboard-driven (snacks `s` key → :SessionRestore)
+			auto_restore = false, -- Restore is dashboard-driven (snacks `s` key → :AutoSession restore)
 			suppressed_dirs = { "~/", "~/projects/", "~/Downloads", "~/Documents", "~/Desktop/" },
 			-- Persist orchestrator.nvim Claude instances alongside the Vim session.
 			-- auto-session calls these callbacks (it does NOT emit User autocmds for
@@ -57,7 +57,7 @@ return {
 
 		local keymap = vim.keymap
 		keymap.set("n", "<leader>S", "", { desc = "Session managing" })
-		keymap.set("n", "<leader>Sr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" })
-		keymap.set("n", "<leader>Ss", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" })
+		keymap.set("n", "<leader>Sr", "<cmd>AutoSession restore<CR>", { desc = "Restore session for cwd" })
+		keymap.set("n", "<leader>Ss", "<cmd>AutoSession save<CR>", { desc = "Save session for auto session root dir" })
 	end,
 }

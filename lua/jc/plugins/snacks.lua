@@ -33,7 +33,7 @@ return {
 							end
 						end,
 					},
-					{ icon = " ", key = "s", desc = "Restore Session", action = ":SessionRestore" },
+					{ icon = " ", key = "s", desc = "Restore Session", action = ":AutoSession restore" },
 					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 				},
 			},
