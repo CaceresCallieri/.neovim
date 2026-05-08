@@ -17,6 +17,18 @@ return {
 			-- Persist orchestrator.nvim Claude instances alongside the Vim session.
 			-- auto-session calls these callbacks (it does NOT emit User autocmds for
 			-- save/restore, so config-driven hooks are the only integration point).
+			--
+			-- neo-tree integration: close the sidebar before save so the session
+			-- file doesn't capture a broken neo-tree window reference (the buffer
+			-- name persists but its tree state doesn't), then reopen it after
+			-- restore. Without this, :SessionRestore brings back a window slot
+			-- with no sidebar contents — the user's reported "no file tree on
+			-- restore" bug.
+			pre_save_cmds = {
+				function()
+					pcall(vim.cmd, "Neotree close")
+				end,
+			},
 			post_save_cmds = {
 				function()
 					local ok, orch = pcall(require, "orchestrator")
@@ -31,6 +43,14 @@ return {
 					if ok and orch.session_restore then
 						orch.session_restore()
 					end
+				end,
+				function()
+					-- Defer so the restore-driven window layout settles before
+					-- neo-tree carves out its slot — opening synchronously here
+					-- can race with edgy's slot allocation.
+					vim.schedule(function()
+						pcall(vim.cmd, "Neotree show filesystem")
+					end)
 				end,
 			},
 		})
