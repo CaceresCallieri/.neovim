@@ -176,6 +176,13 @@ return {
 					if vim.fn.argc() > 0 then
 						return
 					end
+					-- Skip when embedded in Symmetria IDE — the wrapper renders its
+					-- own file tree, so neo-tree's sidebar would double up. The plugin
+					-- itself still loads; only the unsolicited startup open is gated.
+					-- `vim.g.symmetria_ide` is set by runtime/init.lua in the IDE repo.
+					if vim.g.symmetria_ide == 1 then
+						return
+					end
 					-- `show` opens without stealing focus from the dashboard / current window
 					vim.cmd("Neotree show filesystem")
 				end)
