@@ -6,6 +6,7 @@ return {
 	-- Dashboard integration: command stubs enable lazy-loading when dashboard actions invoke these commands
 	cmd = {
 		"AgentsSpawn",
+		"AgentsSpawnOC",
 		"AgentsPick",
 		"AgentsClose",
 		"AgentsFocus",
@@ -41,6 +42,13 @@ return {
 		{ "<leader>aN", "<cmd>AgentsSpawn fresh<cr>", desc = "New Claude" },
 		{ "<leader>aR", "<cmd>AgentsSpawn resume<cr>", desc = "Resume Claude" },
 		{ "<leader>aC", "<cmd>AgentsSpawn continue<cr>", desc = "Continue Claude" },
+
+		-- OpenCode (⚠ DANGEROUS by default - runs with --dangerously-skip-permissions)
+		-- NOTE: <leader>aor (resume) needs a session id and only works via session
+		-- restore; invoked standalone it reports that resume requires an id.
+		{ "<leader>aon", "<cmd>AgentsSpawnOC fresh<cr>", desc = "⚠ New OpenCode (skip permissions)" },
+		{ "<leader>aor", "<cmd>AgentsSpawnOC resume<cr>", desc = "⚠ Resume OpenCode (skip permissions)" },
+		{ "<leader>aoc", "<cmd>AgentsSpawnOC continue<cr>", desc = "⚠ Continue OpenCode (skip permissions)" },
 
 		-- Agent navigation
 		{ "<C-1>", "<cmd>AgentsFocus 1<cr>", mode = { "n", "t" }, desc = "Focus Claude 1" },
