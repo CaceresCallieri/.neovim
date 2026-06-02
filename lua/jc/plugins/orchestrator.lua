@@ -44,10 +44,10 @@ return {
 		{ "<leader>aC", "<cmd>AgentsSpawn continue<cr>", desc = "Continue Claude" },
 
 		-- OpenCode (⚠ DANGEROUS by default - runs with --dangerously-skip-permissions)
-		-- NOTE: <leader>aor (resume) needs a session id and only works via session
-		-- restore; invoked standalone it reports that resume requires an id.
+		-- <leader>aor opens a picker of this project's OpenCode sessions (from
+		-- `opencode session list`) and resumes the chosen one.
 		{ "<leader>aon", "<cmd>AgentsSpawnOC fresh<cr>", desc = "⚠ New OpenCode (skip permissions)" },
-		{ "<leader>aor", "<cmd>AgentsSpawnOC resume<cr>", desc = "⚠ Resume OpenCode (skip permissions)" },
+		{ "<leader>aor", "<cmd>AgentsSpawnOC resume<cr>", desc = "⚠ Resume OpenCode (pick session)" },
 		{ "<leader>aoc", "<cmd>AgentsSpawnOC continue<cr>", desc = "⚠ Continue OpenCode (skip permissions)" },
 
 		-- Agent navigation
