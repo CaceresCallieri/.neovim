@@ -21,9 +21,16 @@ return {
 			if marker then
 				return vim.fs.dirname(marker)
 			end
-			if cwd == vim.env.HOME or cwd == "/" then
+			-- No repo here: refuse $HOME and ANY ancestor of it (/, /home, ...)
+			-- as a watch root — recursively watching from there covers the
+			-- whole home tree and pins the CPU. A narrower non-git dir (a real
+			-- project that just isn't versioned) is still indexed directly.
+			local home = vim.env.HOME
+			if cwd == "/" or cwd == home or home:sub(1, #cwd + 1) == cwd .. "/" then
 				local scratch = vim.fn.stdpath("cache") .. "/fff_scratch"
-				vim.fn.mkdir(scratch, "p")
+				if vim.fn.isdirectory(scratch) == 0 then
+					vim.fn.mkdir(scratch, "p")
+				end
 				return scratch
 			end
 			return cwd
