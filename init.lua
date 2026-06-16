@@ -3,6 +3,9 @@ require("jc.lazy")
 if vim.g.neovide then
 	require("jc.neovide")
 end
+if vim.g.symmetria_ide == 1 then
+	require("jc.symmetria")
+end
 
 -- For TMUX, allows tmux-windows-name plugin to remane tmux window when opening and closing neovim instances
 local uv = vim.uv

@@ -1,6 +1,8 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	-- Skip noice inside Symmetria IDE — see `jc.symmetria` for why.
+	cond = function() return not require("jc.symmetria").active end,
 	opts = {
 		-- add any options here
 	},
