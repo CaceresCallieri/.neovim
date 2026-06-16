@@ -1,8 +1,8 @@
 -- Neovide options
-vim.o.guifont = "IBM Plex Mono:h11" -- Set font for Neovide
+vim.o.guifont = "IBM Plex Mono:h8" -- Set font for Neovide
 
 -- Padding
-local window_padding = 20
+local window_padding = 40
 vim.g.neovide_padding_top = window_padding
 vim.g.neovide_padding_bottom = window_padding
 vim.g.neovide_padding_right = window_padding
