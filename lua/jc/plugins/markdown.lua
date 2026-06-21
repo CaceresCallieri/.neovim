@@ -7,8 +7,8 @@
 -- other line renders, so you never lose the source you're typing.
 --
 -- Prereqs already satisfied by this config:
---   * `markdown` + `markdown_inline` treesitter parsers (treesitter.lua)
---   * nvim-web-devicons (icons.lua) — supplies code-block language icons
+--   * `markdown` + `markdown_inline` treesitter parsers (treesitter.lua) — required
+--   * nvim-web-devicons (icons.lua) — optional; adds code-block language icons
 --
 -- conceallevel note: options.lua sets a GLOBAL conceallevel = 1 (for obsidian).
 -- render-markdown manages conceallevel PER WINDOW — it raises the window to 3
@@ -27,10 +27,11 @@ return {
 	},
 	-- Listing the keymap here (rather than in `config`) makes it visible to
 	-- which-key and lazy-loads the plugin on first press as well as on `ft`.
-	-- `:RenderMarkdown toggle` flips rendered <-> raw for ALL buffers; the
-	-- per-buffer variant is `:RenderMarkdown buf_toggle` if you prefer that.
+	-- `buf_toggle` flips rendered <-> raw for the CURRENT buffer only, so the
+	-- key affects the file you're looking at without touching other open
+	-- buffers; `:RenderMarkdown toggle` does it globally for all buffers.
 	keys = {
-		{ "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown rendering" },
+		{ "<leader>um", "<cmd>RenderMarkdown buf_toggle<cr>", desc = "Toggle Markdown rendering" },
 	},
 	-- Defaults are well-tuned and theme-aware; start from them and reach into
 	-- this table for `heading`, `code`, `bullet`, `checkbox`, etc. to taste.
